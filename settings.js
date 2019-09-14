@@ -28,7 +28,16 @@ const Instruments = (props) => (
     ))}
   </select>
 )
-// TODO swap jscolor
+
+const MidiSelect = (props) => (
+  <select name="midi">
+    <option disabled="disabled">Output Device</option>
+    {props.outputs.map(m => (
+      <option value={m.id}>{m.name}</option>
+    ))}
+  </select>
+)
+
 const SettingsForm = (props) => (
   <form>
     <div className="row">
@@ -89,11 +98,31 @@ const SettingsForm = (props) => (
         </div>
         <div className="u-half-width">
           <label>
-            Instrument
-            <Instruments value={props.settings.instrument}
-                         groups={props.instruments}
-                         onChange={props.onChange}/>
+            Output
+            <select value={props.settings.output}
+                    name="output"
+                    onChange={props.onChange}>
+              <option disabled="disabled">Choose output</option>
+              <option value="midi">MIDI</option>
+              <option value="sample">Sample Synthesis</option>
+            </select>
           </label>
+          {props.settings.output === "sample" && (
+            <label>
+              MIDI
+              <MidiSelect value={props.settings.midi}
+                          outputs={props.midi}
+                          onChange={props.onChange}/>
+            </label>
+          )}
+          {props.settings.output === "midi" && (
+            <label>
+              Instrument
+              <Instruments value={props.settings.instrument}
+                           groups={props.instruments}
+                           onChange={props.onChange}/>
+            </label>
+          )}
           <label>
             <input name="number_or_name" type="checkbox"
                    checked={props.settings.number_or_name}

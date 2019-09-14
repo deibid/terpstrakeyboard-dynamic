@@ -25,7 +25,7 @@ const findPreset = (preset) => {
   console.log("Unable to find preset");
   return default_settings;
 };
-
+// const query = new URLSearchParams(document.location.search.substring(1));
 // TODO add query parsing
 const parseScale = (settings) => {
   const note_colors = (settings.note_colors || "").split('\n');
@@ -54,14 +54,24 @@ const parseScale = (settings) => {
 }
 
 const App = () => {
+  // TODO loading indicator
   const [settings, setSettings] = useState(default_settings);
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
+  const [midi, setMidi] = useState([]);
 
   const onSubmit = (e) => {
     setActive(true);
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (navigator.requestMIDIAccess) {
+      navigator.requestMIDIAccess().then(m => {
+        setMidi(Array.from(m.outputs.values()));
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (settings.instrument && settings.fundamental) {
@@ -106,6 +116,7 @@ const App = () => {
           <Settings settings={settings} presets={presets}
                     onChange={onChange} onSubmit={onSubmit}
                     instruments={instruments}
+                    midi={midi}
                     presetChanged={presetChanged} />
         </div>
         <Blurb />
