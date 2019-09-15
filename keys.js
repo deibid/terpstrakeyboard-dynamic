@@ -14,8 +14,6 @@ class Keys {
     this.state = {
       canvas,
       context: canvas.getContext('2d'),
-      global_pressed_interval: null,
-      current_text_color: "#000000",
       sustain: false,
       sustainedNotes: [],
       pressedKeys: [],
@@ -91,18 +89,19 @@ class Keys {
     }
   }
 
-  hexOn(coords, on) {
-    var hex = this.synth.makeHex(coords);
-    var cents = this.hexCoordsToCents(coords);
-    this.drawHex(coords, this.centsToColor(cents, true));
+  hexOn(coords) {
+    const hex = this.synth.makeHex(coords);
+    const [cents, pressed_interval] = this.hexCoordsToCents(coords);
+    const [color, text_color] = this.centsToColor(cents, true, pressed_interval);
+    this.drawHex(coords, color, text_color);
     hex.noteOn(cents);
     return hex;
   }
 
   hexOff(coords) {
-    const cents = this.hexCoordsToCents(coords);
-    const color = this.centsToColor(cents, false);
-    this.drawHex(coords, color);
+    const [cents, pressed_interval] = this.hexCoordsToCents(coords);
+    const [color, text_color] = this.centsToColor(cents, false, pressed_interval);
+    this.drawHex(coords, color, text_color);
   }
 
   noteOff(hex) {
@@ -347,7 +346,7 @@ class Keys {
     return (new Point(screenX, screenY));
   }
 
-  drawHex(p, c) { /* Point, color */
+  drawHex(p, c, current_text_color) { /* Point, color */
     var context = this.state.context;
     var hexCenter = this.hexCoordsToScreen(p);
 
@@ -432,7 +431,7 @@ class Keys {
     // hexcoords = p and screenCoords = hexCenter
 
     //context.fillStyle = "black"; //bdl_04062016
-    context.fillStyle = getContrastYIQ(this.state.current_text_color);
+    context.fillStyle = getContrastYIQ(current_text_color);
     context.font = "22pt Arial";
     context.textAlign = "center";
     context.textBaseline = "middle";
@@ -470,21 +469,20 @@ class Keys {
     context.restore();
   }
 
-  centsToColor(cents, pressed) {
+  centsToColor(cents, pressed, pressed_interval) {
     var returnColor;
     if (!this.settings.spectrum_colors) {
-      if (typeof(this.settings.note_colors[this.state.global_pressed_interval]) === 'undefined') {
+      if (typeof(this.settings.note_colors[pressed_interval]) === 'undefined') {
         returnColor = "#EDEDE4";
       } else {
-        returnColor = this.settings.note_colors[this.state.global_pressed_interval];
+        returnColor = this.settings.note_colors[pressed_interval];
       }
 
       var oldColor = returnColor;
 
       //convert color name to hex
       returnColor = nameToHex(returnColor);
-
-      this.state.current_text_color = returnColor;
+      const current_text_color = returnColor;
 
       //convert the hex to rgb
       returnColor = hex2rgb(returnColor);
@@ -495,7 +493,7 @@ class Keys {
         returnColor[1] -= 90;
       }
 
-      return rgb(returnColor[0], returnColor[1], returnColor[2]);
+      return [rgb(returnColor[0], returnColor[1], returnColor[2]), current_text_color];
 
     }
 
@@ -536,8 +534,7 @@ class Keys {
       octs -= 1;
     }
     var cents = octs * this.settings.equivInterval + this.settings.scale[reducedSteps];
-    this.state.global_pressed_interval = reducedSteps;
-    return cents;
+    return [cents, reducedSteps];
   }
 
   getHexCoordsAt(coords) {
