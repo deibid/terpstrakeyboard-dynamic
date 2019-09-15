@@ -91,6 +91,20 @@ class Keys {
     }
   }
 
+  hexOn(coords, on) {
+    var hex = this.synth.makeHex(coords);
+    var cents = this.hexCoordsToCents(coords);
+    this.drawHex(coords, this.centsToColor(cents, true));
+    hex.noteOn(cents);
+    return hex;
+  }
+
+  hexOff(coords) {
+    const cents = this.hexCoordsToCents(coords);
+    const color = this.centsToColor(cents, false);
+    this.drawHex(coords, color);
+  }
+
   noteOff(hex) {
     if (this.state.sustain) {
       this.state.sustainedNotes.push(hex);
@@ -99,6 +113,21 @@ class Keys {
     }
   }
 
+  sustainOff() {
+    this.state.sustain = false;
+    for (var note = 0; note < this.state.sustainedNotes.length; note++) {
+      this.noteOff(this.state.sustainedNotes[note]);
+    }
+    this.state.sustainedNotes = [];
+    // tempAlert('Sustain Off', 900);
+  }
+
+  sustainOn() {
+    this.state.sustain = true;
+    // tempAlert('Sustain On', 900);
+  }
+
+  /**************** Event Handlers ****************/
   deviceMotion = () => {
     this.state.shake.x1 = e.accelerationIncludingGravity.x;
     this.state.shake.y1 = e.accelerationIncludingGravity.y;
@@ -113,15 +142,9 @@ class Keys {
       if (lastShakeCheck - lastShakeCount >= 3) {
         this.state.shake.lastShakeCount = this.state.shake.lastShakeCheck;
         if (this.state.sustain == true) {
-          this.state.sustain = false;
-          for (var note = 0; note < this.state.sustainedNotes.length; note++) {
-            this.noteOff(this.state.sustainedNotes[note]);
-          }
-          this.state.sustainedNotes = [];
-          tempAlert('Sustain Off', 900);
+          this.sustainOff();
         } else {
-          this.state.sustain = true;
-          tempAlert('Sustain On', 900);
+          this.sustainOn();
         }
       }
     }
@@ -172,34 +195,27 @@ class Keys {
 
   onKeyDown = (e) => {
     if (e.keyCode == 32) { // Spacebar
-      this.state.sustain = true;
+      this.sustainOn();
     } else if (!this.state.isMouseDown && !this.state.isTouchDown
                && (e.keyCode in this.settings.keyCodeToCoords)
                && this.state.pressedKeys.indexOf(e.keyCode) == -1) {
       this.state.pressedKeys.push(e.keyCode);
       var coords = this.settings.keyCodeToCoords[e.keyCode];
-      var hex = this.synth.makeHex(coords);
+      var hex = this.hexOn(coords);
       this.state.activeHexObjects.push(hex);
-      var cents = this.hexCoordsToCents(coords);
-      this.drawHex(coords, this.centsToColor(cents, true));
-      hex.noteOn(cents);
     }
   }
 
   onKeyUp = (e) => {
     if (e.keyCode == 32) { // Spacebar
-      this.state.sustain = false;
-      for (var note = 0; note < this.state.sustainedNotes.length; note++) {
-        this.noteOff(this.state.sustainedNotes[note]);
-      }
-      this.state.sustainedNotes = [];
+      this.sustainOff();
     } else if (!this.state.isMouseDown && !this.state.isTouchDown
                && (e.keyCode in this.settings.keyCodeToCoords)) {
       var keyIndex = this.state.pressedKeys.indexOf(e.keyCode);
       if (keyIndex != -1) {
         this.state.pressedKeys.splice(keyIndex, 1);
         var coords = this.settings.keyCodeToCoords[e.keyCode];
-        this.drawHex(coords, this.centsToColor(this.hexCoordsToCents(coords), false));
+        this.hexOff(coords)
         var hexIndex = this.state.activeHexObjects.findIndex(function(hex) {
           return coords.equals(hex.coords);
         });
@@ -218,9 +234,8 @@ class Keys {
     }
     this.state.canvas.removeEventListener("mousemove", this.mouseActive);
     if (this.state.activeHexObjects.length > 0) {
-      var coords = this.state.activeHexObjects[0].coords;
+      this.hexOff(this.state.activeHexObjects[0].coords);
       this.noteOff(this.state.activeHexObjects[0]);
-      this.drawHex(coords, this.centsToColor(this.hexCoordsToCents(coords), false));
       this.state.activeHexObjects.pop();
     }
   }
@@ -240,20 +255,13 @@ class Keys {
     coords = this.getHexCoordsAt(coords);
 
     if (this.state.activeHexObjects.length == 0) {
-      this.state.activeHexObjects[0] = this.synth.makeHex(coords);
-      var cents = this.hexCoordsToCents(coords);
-      this.state.activeHexObjects[0].noteOn(cents);
-      this.drawHex(coords, this.centsToColor(cents, true));
+      this.state.activeHexObjects[0] = this.hexOn(coords);
     } else {
-      if (!(coords.equals(this.state.activeHexObjects[0].coords))) {
-        this.noteOff(this.state.activeHexObjects[0]);
-        this.drawHex(this.state.activeHexObjects[0].coords,
-                     this.centsToColor(this.hexCoordsToCents(this.state.activeHexObjects[0].coords, false)));
-
-        this.state.activeHexObjects[0] = this.synth.makeHex(coords);
-        var cents = this.hexCoordsToCents(coords);
-        this.state.activeHexObjects[0].noteOn(cents);
-        this.drawHex(coords, this.centsToColor(cents, true));
+      var first = this.state.activeHexObjects[0];
+      if (!(coords.equals(first.coords))) {
+        this.hexOff(first.coords);
+        this.noteOff(first);
+        this.state.activeHexObjects[0] = this.hexOn(coords);
       }
     }
   }
@@ -304,26 +312,22 @@ class Keys {
         }
       }
       if (!(found)) {
-        var newHex = this.synth.makeHex(coords);
-        var cents = this.hexCoordsToCents(coords);
-        newHex.noteOn(cents);
-        var c = this.centsToColor(cents, true);
-        this.drawHex(coords, c);
+        var newHex = this.hexOn(coords);
         this.state.activeHexObjects.push(newHex);
       }
     }
 
     for (var i = this.state.activeHexObjects.length - 1; i >= 0; i--) {
       if (this.state.activeHexObjects[i].release) {
+        this.hexOff(this.state.activeHexObjects[i].coords);
         this.noteOff(this.state.activeHexObjects[i]);
-        var coords = this.state.activeHexObjects[i].coords;
-        var c = this.centsToColor(this.hexCoordsToCents(coords), false);
-        this.drawHex(coords, c);
+        // TODO yeahhhhh, don't mutate array while looping through it.
         this.state.activeHexObjects.splice(i, 1);
       }
     }
   }
 
+  /**************** Rendering ****************/
   drawGrid() {
     var max = (this.state.centerpoint.x > this.state.centerpoint.y) ?
         this.state.centerpoint.x / this.settings.hexSize :
@@ -332,8 +336,7 @@ class Keys {
     for (var r = -max; r < max; r++) {
       for (var ur = -max; ur < max; ur++) {
         var coords = new Point(r, ur);
-        var c = this.centsToColor(this.hexCoordsToCents(coords), false);
-        this.drawHex(coords, c);
+        this.hexOff(coords);
       }
     }
   }

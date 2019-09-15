@@ -107,7 +107,7 @@ const SettingsForm = (props) => (
               <option value="sample">Sample Synthesis</option>
             </select>
           </label>
-          {props.settings.output === "sample" && (
+          {props.settings.output === "midi" && (
             <label>
               MIDI
               <MidiSelect value={props.settings.midi}
@@ -115,7 +115,7 @@ const SettingsForm = (props) => (
                           onChange={props.onChange}/>
             </label>
           )}
-          {props.settings.output === "midi" && (
+          {props.settings.output === "sample" && (
             <label>
               Instrument
               <Instruments value={props.settings.instrument}

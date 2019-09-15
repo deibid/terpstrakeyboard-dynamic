@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+// Three concepts:
+// Coordinates -> Scale degree -> Pitch/midi
+
+
 export const create_sample_synth = async (fileName, fundamental) => {
   try {
     const sampleFadeout = findFadeout(fileName);
@@ -15,8 +19,8 @@ export const create_sample_synth = async (fileName, fundamental) => {
     // TODO test this statement later
     const samples = [s110, s220, s440, s880];
     return {
-      makeHex: (coords) => {
-        return new ActiveHex(coords, fundamental, sampleFadeout, samples, audioContext);
+      makeHex: (note) => {
+        return new ActiveHex(note, fundamental, sampleFadeout, samples, audioContext);
       },
     };
   } catch (e) {
