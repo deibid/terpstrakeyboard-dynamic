@@ -348,7 +348,7 @@ class Keys {
   }
 
   drawHex(p, c) { /* Point, color */
-
+    var context = this.state.context;
     var hexCenter = this.hexCoordsToScreen(p);
 
     // Calculate hex vertices
@@ -363,25 +363,25 @@ class Keys {
 
     // Draw filled hex
 
-    this.state.context.beginPath();
-    this.state.context.moveTo(x[0], y[0]);
+    context.beginPath();
+    context.moveTo(x[0], y[0]);
     for (var i = 1; i < 6; i++) {
-      this.state.context.lineTo(x[i], y[i]);
+      context.lineTo(x[i], y[i]);
     }
-    this.state.context.closePath();
-    this.state.context.fillStyle = c;
-    this.state.context.fill();
+    context.closePath();
+    context.fillStyle = c;
+    context.fill();
 
     // Save context and create a hex shaped clip
 
-    this.state.context.save();
-    this.state.context.beginPath();
-    this.state.context.moveTo(x[0], y[0]);
+    context.save();
+    context.beginPath();
+    context.moveTo(x[0], y[0]);
     for (var i = 1; i < 6; i++) {
-      this.state.context.lineTo(x[i], y[i]);
+      context.lineTo(x[i], y[i]);
     }
-    this.state.context.closePath();
-    this.state.context.clip();
+    context.closePath();
+    context.clip();
 
     // Calculate hex vertices outside clipped path
 
@@ -396,46 +396,46 @@ class Keys {
 
     // Draw shadowed stroke outside clip to create pseudo-3d effect
 
-    this.state.context.beginPath();
-    this.state.context.moveTo(x2[0], y2[0]);
+    context.beginPath();
+    context.moveTo(x2[0], y2[0]);
     for (var i = 1; i < 6; i++) {
-      this.state.context.lineTo(x2[i], y2[i]);
+      context.lineTo(x2[i], y2[i]);
     }
-    this.state.context.closePath();
-    this.state.context.strokeStyle = 'black';
-    this.state.context.lineWidth = 5;
-    this.state.context.shadowBlur = 15;
-    this.state.context.shadowColor = 'black';
-    this.state.context.shadowOffsetX = 0;
-    this.state.context.shadowOffsetY = 0;
-    this.state.context.stroke();
-    this.state.context.restore();
+    context.closePath();
+    context.strokeStyle = 'black';
+    context.lineWidth = 5;
+    context.shadowBlur = 15;
+    context.shadowColor = 'black';
+    context.shadowOffsetX = 0;
+    context.shadowOffsetY = 0;
+    context.stroke();
+    context.restore();
 
     // Add a clean stroke around hex
 
-    this.state.context.beginPath();
-    this.state.context.moveTo(x[0], y[0]);
+    context.beginPath();
+    context.moveTo(x[0], y[0]);
     for (var i = 1; i < 6; i++) {
-      this.state.context.lineTo(x[i], y[i]);
+      context.lineTo(x[i], y[i]);
     }
-    this.state.context.closePath();
-    this.state.context.lineWidth = 2;
-    this.state.context.lineJoin = 'round';
-    this.state.context.strokeStyle = 'black';
-    this.state.context.stroke();
+    context.closePath();
+    context.lineWidth = 2;p
+    context.lineJoin = 'round';
+    context.strokeStyle = 'black';
+    context.stroke();
 
     // Add note name and equivalence interval multiple
 
-    this.state.context.save();
-    this.state.context.translate(hexCenter.x, hexCenter.y);
-    this.state.context.rotate(-this.settings.rotation);
+    context.save();
+    context.translate(hexCenter.x, hexCenter.y);
+    context.rotate(-this.settings.rotation);
     // hexcoords = p and screenCoords = hexCenter
 
-    //this.state.context.fillStyle = "black"; //bdl_04062016
-    this.state.context.fillStyle = getContrastYIQ(this.state.current_text_color);
-    this.state.context.font = "22pt Arial";
-    this.state.context.textAlign = "center";
-    this.state.context.textBaseline = "middle";
+    //context.fillStyle = "black"; //bdl_04062016
+    context.fillStyle = getContrastYIQ(this.state.current_text_color);
+    context.font = "22pt Arial";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
 
     var note = p.x * this.settings.rSteps + p.y * this.settings.urSteps;
     // TODO this should be parsed already
@@ -449,25 +449,25 @@ class Keys {
     if (!this.settings.no_labels) {
       var name = this.settings.number_or_name ? "" + reducedNote : this.settings.names[reducedNote];
       if (name) {
-        this.state.context.save();
+        context.save();
         var scaleFactor = name.length > 3 ? 3 / name.length : 1;
         scaleFactor *= this.settings.hexSize / 50;
-        this.state.context.scale(scaleFactor, scaleFactor);
-        this.state.context.fillText(name, 0, 0);
-        this.state.context.restore();
+        context.scale(scaleFactor, scaleFactor);
+        context.fillText(name, 0, 0);
+        context.restore();
       }
 
       var scaleFactor = this.settings.hexSize / 50;
-      this.state.context.scale(scaleFactor, scaleFactor);
-      this.state.context.translate(10, -25);
-      this.state.context.fillStyle = "white";
-      this.state.context.font = "12pt Arial";
-      this.state.context.textAlign = "center";
-      this.state.context.textBaseline = "middle";
-      this.state.context.fillText(equivMultiple, 0, 0);
+      context.scale(scaleFactor, scaleFactor);
+      context.translate(10, -25);
+      context.fillStyle = "white";
+      context.font = "12pt Arial";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillText(equivMultiple, 0, 0);
     }
 
-    this.state.context.restore();
+    context.restore();
   }
 
   centsToColor(cents, pressed) {
