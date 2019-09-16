@@ -36,8 +36,9 @@ const loadSample = async (audioContext, name, freq) => {
 }
 
 function ActiveHex(coords, fundamental, sampleFadeout, sampleBuffer, audioContext) {
-  this.coords = coords;
+  this.coords = coords;// these end up being used by the keys class
   this.release = false;
+
   this.fundamental = fundamental;
   this.sampleFadeout = sampleFadeout;
   this.sampleBuffer = sampleBuffer;

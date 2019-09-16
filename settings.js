@@ -30,9 +30,9 @@ const Instruments = (props) => (
 )
 
 const MidiSelect = (props) => (
-  <select name="midi">
+  <select name="midi" onChange={props.onChange}>
     <option disabled="disabled">Output Device</option>
-    {props.outputs.map(m => (
+    {Array.from(props.midi.outputs.values()).map(m => (
       <option value={m.id}>{m.name}</option>
     ))}
   </select>
@@ -103,15 +103,15 @@ const SettingsForm = (props) => (
                     name="output"
                     onChange={props.onChange}>
               <option disabled="disabled">Choose output</option>
-              <option value="midi">MIDI</option>
+              {props.midi && (<option value="midi">MIDI</option>)}
               <option value="sample">Sample Synthesis</option>
             </select>
           </label>
-          {props.settings.output === "midi" && (
+          {(props.settings.output === "midi" && props.midi) && (
             <label>
               MIDI
               <MidiSelect value={props.settings.midi}
-                          outputs={props.midi}
+                          midi={props.midi}
                           onChange={props.onChange}/>
             </label>
           )}

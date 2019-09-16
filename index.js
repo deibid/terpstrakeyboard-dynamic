@@ -5,6 +5,7 @@ import Settings from './settings';
 import Keyboard from './keyboard';
 import {presets, default_settings} from './presets';
 import {create_sample_synth, instruments} from './sample_synth';
+import {create_midi_synth} from './midi_synth';
 import keyCodeToCoords from './keycodes';
 import "./normalize.css";
 import "./skeleton.css";
@@ -58,7 +59,7 @@ const App = () => {
   const [settings, setSettings] = useState(default_settings);
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
-  const [midi, setMidi] = useState([]);
+  const [midi, setMidi] = useState(null);
 
   const onSubmit = (e) => {
     setActive(true);
@@ -67,20 +68,23 @@ const App = () => {
 
   useEffect(() => {
     if (navigator.requestMIDIAccess) {
-      navigator.requestMIDIAccess().then(m => {
-        setMidi(Array.from(m.outputs.values()));
-      });
+      navigator.requestMIDIAccess().then(m => setMidi(m));
     }
   }, []);
 
   useEffect(() => {
-    if (settings.instrument && settings.fundamental) {
+    if (settings.output === "sample"
+        && settings.instrument && settings.fundamental) {
       // TODO load on submit rather than select
       create_sample_synth(settings.instrument,
                           settings.fundamental)
         .then(s => setSynth(s));
     }
-  }, [settings.instrument, settings.fundamental]);
+    if (settings.output === "midi" && settings.midi) {
+      create_midi_synth(midi.outputs.get(settings.midi))
+        .then(s => setSynth(s));
+    }
+  }, [settings.instrument, settings.fundamental, settings.midi, settings.output, midi]);
 
   const onChange = e => {
     let value;

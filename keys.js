@@ -90,11 +90,11 @@ class Keys {
   }
 
   hexOn(coords) {
-    const hex = this.synth.makeHex(coords);
-    const [cents, pressed_interval] = this.hexCoordsToCents(coords);
+    const [cents, pressed_interval, steps, octaves] = this.hexCoordsToCents(coords);
     const [color, text_color] = this.centsToColor(cents, true, pressed_interval);
     this.drawHex(coords, color, text_color);
-    hex.noteOn(cents);
+    const hex = this.synth.makeHex(coords, cents, pressed_interval, steps, octaves);
+    hex.noteOn();
     return hex;
   }
 
@@ -514,8 +514,8 @@ class Keys {
 
     //setup text color
     var tcolor = HSVtoRGB2(h, s, v);
-    this.state.current_text_color = rgbToHex(tcolor.red, tcolor.green, tcolor.blue);
-    return returnColor;
+    const current_text_color = rgbToHex(tcolor.red, tcolor.green, tcolor.blue);
+    return [returnColor, current_text_color];
   }
 
   roundTowardZero(val) {
@@ -534,7 +534,7 @@ class Keys {
       octs -= 1;
     }
     var cents = octs * this.settings.equivInterval + this.settings.scale[reducedSteps];
-    return [cents, reducedSteps];
+    return [cents, reducedSteps, distance, octs];
   }
 
   getHexCoordsAt(coords) {
