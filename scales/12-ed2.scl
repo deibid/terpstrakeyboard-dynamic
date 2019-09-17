@@ -1,0 +1,18 @@
+! 12-tet.scl
+! 12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling.
+!
+12-ed2 equal tempered scale
+12
+!
+100.00000
+200.00000
+300.00000
+400.00000
+500.00000
+600.00000
+700.00000
+800.00000
+900.00000
+1000.00000
+1100.00000
+1200.00000

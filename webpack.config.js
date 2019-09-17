@@ -30,6 +30,11 @@ module.exports = {
           {loader: 'css-loader'},
         ]
       },
+      { test: /\.scl$/,
+        use: [
+          {loader: 'raw-loader'}
+        ]
+      },
       {
         test:/\.(png|jpg|gif)$/,
         use:[{
