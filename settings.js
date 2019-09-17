@@ -176,7 +176,7 @@ const SettingsForm = (props) => (
             <label>
               Note Names
               <textarea name="names" onChange={props.onChange}
-                        value={props.settings.names}
+                        value={props.settings.names.join("\n")}
                         className="iosscrollable u-full-width"
                         rows="12"/>
             </label>
@@ -196,7 +196,7 @@ const SettingsForm = (props) => (
             <label>
               Color Layout
               <textarea name="note_colors" onChange={props.onChange}
-                        value={props.settings.note_colors}
+                        value={props.settings.note_colors.join("\n")}
                         className="iosscrollable u-full-width" rows="12"/>
             </label>
           )}

@@ -30,9 +30,7 @@ const findPreset = (preset) => {
 // const query = new URLSearchParams(document.location.search.substring(1));
 // TODO add query parsing
 const parseScale = (settings) => {
-  const note_colors = (settings.note_colors || "").split('\n');
   const scale = [];
-  const names = (settings.names || "").split('\n');
 
   var scaleLines = settings.scale.split('\n');
   for (let line of scaleLines) {
@@ -52,7 +50,7 @@ const parseScale = (settings) => {
   scale.unshift(0);
   // TODO make this expect leading hash
   const fundamental_color = (settings.fundamental_color || "").replace(/#/, '');
-  return {...settings, fundamental_color, note_colors, scale, names, equivInterval, keyCodeToCoords};
+  return {...settings, fundamental_color, scale, equivInterval, keyCodeToCoords};
 }
 
 const App = () => {
@@ -93,6 +91,8 @@ const App = () => {
       value = e.target.checked;
     } else if (e.target.type === 'number') {
       value = parseFloat(e.target.value);
+    } else if (e.target.name === "names" || e.target.name === "note_colors") {
+      value = e.target.value.split("\n");
     } else {
       value = e.target.value;
     }
