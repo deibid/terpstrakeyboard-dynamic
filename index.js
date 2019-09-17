@@ -54,7 +54,7 @@ const parseScale = (settings) => {
 }
 
 const App = () => {
-  // TODO loading indicator
+  const [loading, setLoading] = useState(0);
   const [settings, setSettings] = useState(default_settings);
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
@@ -67,7 +67,11 @@ const App = () => {
 
   useEffect(() => {
     if (navigator.requestMIDIAccess) {
-      navigator.requestMIDIAccess().then(m => setMidi(m));
+      setLoading(l => l + 1);
+      navigator.requestMIDIAccess().then(m => {
+        setLoading(l => l - 1);
+        setMidi(m)
+      });
     }
   }, []);
 
@@ -75,13 +79,21 @@ const App = () => {
     if (settings.output === "sample"
         && settings.instrument && settings.fundamental) {
       // TODO load on submit rather than select
+      setLoading(l => l + 1);
       create_sample_synth(settings.instrument,
                           settings.fundamental)
-        .then(s => setSynth(s));
+        .then(s => {
+          setLoading(l => l - 1);
+          setSynth(s);
+        });
     }
     if (settings.output === "midi" && settings.midi) {
+      setLoading(l => l + 1);
       create_midi_synth(midi.outputs.get(settings.midi))
-        .then(s => setSynth(s));
+        .then(s => {
+          setLoading(l => l + 1);
+          setSynth(s);
+        });
     }
   }, [settings.instrument, settings.fundamental, settings.midi, settings.output, midi]);
 
@@ -110,6 +122,7 @@ const App = () => {
   } else {
     return (
 	  <div className="section">
+        {loading > 0 && (<div>Loading...</div>)}
 	    <div className="container">
 	      <h2>
             <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
