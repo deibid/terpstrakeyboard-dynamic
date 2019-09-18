@@ -23,6 +23,7 @@ export const presets = [
       {
         name: "Jankó / 6-6/Balanced/Symmetric/Bilinear/Uniform",
         value: {
+          "output": "sample",
           "fundamental": 261.6255653,
           "rSteps": 2,
           "urSteps": 1,
@@ -43,6 +44,7 @@ export const presets = [
       },
       {
         value: {
+          "output": "sample",
           "fundamental": 261.6255653,
           "rSteps": 4,
           "urSteps": -3,
@@ -64,6 +66,7 @@ export const presets = [
       },
       {
         value: {
+          "output": "sample",
           "fundamental": 261.6255653,
           "rSteps": 2,
           "urSteps": 7,
@@ -86,6 +89,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 261.6255653,
           "rSteps": 3,
           "urSteps": 2,
@@ -107,6 +111,7 @@ export const presets = [
       },
       {
         value: {
+          "output": "sample",
           "fundamental": 261.6255653,
           "rSteps": 3,
           "urSteps": 1,
@@ -133,6 +138,7 @@ export const presets = [
     settings: [
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 1,
           "urSteps": 0,
@@ -152,6 +158,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 2,
           "urSteps": 1,
@@ -173,6 +180,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 3,
           "urSteps": 2,
@@ -194,6 +202,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 3,
           "urSteps": 2,
@@ -218,6 +227,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 272.2044155,
           "rSteps": 4,
           "urSteps": 3,
@@ -239,6 +249,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 264,
           "rSteps": 5,
           "urSteps": 2,
@@ -281,6 +292,7 @@ export const presets = [
       {
         "name":  "53-RI-3L Bosanquet / Wilson / Terpstra Male (Western)",
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 9,
           "urSteps": 5,
@@ -302,6 +314,7 @@ export const presets = [
       {
         "name":  "53-RI-3L Mirrored Bosanquet/Wilson / Terpstra Female (Eastern)",
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 9,
           "urSteps": 4,
@@ -328,6 +341,7 @@ export const presets = [
       {
         "name":  "19-ed2 Bosanquet / Wilson / Terpstra",
         value: {
+          "output": "sample",
           "fundamental": 254.5642522,
           "rSteps": 3,
           "urSteps": 1,
@@ -347,6 +361,7 @@ export const presets = [
       },
       {
         value: {
+          "output": "sample",
           "fundamental": 263.09212,
           "rSteps": 5,
           "urSteps": 2,
@@ -368,6 +383,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 260.5221364,
           "rSteps": 7,
           "urSteps": 4,
@@ -392,6 +408,7 @@ export const presets = [
     settings: [
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 2,
           "urSteps": 1,
@@ -412,6 +429,7 @@ export const presets = [
 
       {
         value: {
+          "output": "sample",
           "fundamental": 256,
           "rSteps": 2,
           "urSteps": 1,

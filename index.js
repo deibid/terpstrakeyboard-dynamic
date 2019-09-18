@@ -7,13 +7,13 @@ import {presets, default_settings} from './presets';
 import {create_sample_synth, instruments} from './sample_synth';
 import {create_midi_synth} from './midi_synth';
 import keyCodeToCoords from './keycodes';
-import "./normalize.css";
+// import "./normalize.css";
 import "./skeleton.css";
 // These can be pulled from npm, but have been modified.
-// import "normalize.css";
+import "normalize.css";
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css"
-import spacer from './1x1.png';
+import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool } from './use-query';
 import Blurb from './blurb';
 
 const findPreset = (preset) => {
@@ -27,35 +27,61 @@ const findPreset = (preset) => {
   console.log("Unable to find preset");
   return default_settings;
 };
-// const query = new URLSearchParams(document.location.search.substring(1));
-// TODO add query parsing
+
 const parseScale = (settings) => {
   const scale = [];
-
-  var scaleLines = settings.scale.split('\n');
-  for (let line of scaleLines) {
-    if (line.match(/^[1234567890.\s/]+$/) && !(line.match(/^\s+$/))) {
-      if (line.match(/\//)) {
-        // ratio
-        var nd = line.split('/');
-        var ratio = 1200 * Math.log(parseInt(nd[0]) / parseInt(nd[1])) / Math.log(2);
-        scale.push(ratio);
-      } else if (line.match(/\./)) {
-        // cents
-        scale.push(parseFloat(line));
-      }
-    }
-  };
-  const equivInterval = scale.pop();
-  scale.unshift(0);
   // TODO make this expect leading hash
   const fundamental_color = (settings.fundamental_color || "").replace(/#/, '');
-  return {...settings, fundamental_color, scale, equivInterval, keyCodeToCoords};
+  const result = {...settings, fundamental_color, keyCodeToCoords};
+
+  if (settings.scale) {
+    var scaleLines = settings.scale.split('\n');
+    for (let line of scaleLines) {
+      if (line.match(/^[1234567890.\s/]+$/) && !(line.match(/^\s+$/))) {
+        if (line.match(/\//)) {
+          // ratio
+          var nd = line.split('/');
+          var ratio = 1200 * Math.log(parseInt(nd[0]) / parseInt(nd[1])) / Math.log(2);
+          scale.push(ratio);
+        } else if (line.match(/\./)) {
+          // cents
+          scale.push(parseFloat(line));
+        }
+      }
+    };
+    const equivInterval = scale.pop();
+    scale.unshift(0);
+    result["scale"] = scale;
+    result["equivInterval"] = equivInterval;
+  }
+  return result;
 }
 
 const App = () => {
   const [loading, setLoading] = useState(0);
-  const [settings, setSettings] = useState(default_settings);
+  const [settings, setSettings] = useQuery({
+    // Output
+    output: ExtractString,
+    instrument: ExtractString,
+    midi: ExtractString,
+    fundamental: ExtractFloat,
+    // Layout
+    rSteps: ExtractInt,
+    urSteps: ExtractInt,
+    hexSize: ExtractInt,
+    rotation: ExtractInt,
+    // Scale
+    scale: ExtractString,
+    no_labels: ExtractBool,
+    number_or_name: ExtractBool,
+    // TODO consistent snake case
+    equivSteps: ExtractInt,
+    names: new Extract(x => x.split("\n"), x => x.join("\n")),
+    spectrum_colors: ExtractBool,
+    fundamental_color: ExtractString,
+    note_colors: new Extract(x => x.split("\n"), x => x.join("\n")),
+    //
+  });
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
   const [midi, setMidi] = useState(null);
@@ -112,25 +138,28 @@ const App = () => {
   };
 
   const presetChanged = e => {
-    setSettings(findPreset(e.target.value));
+    setSettings(_ => findPreset(e.target.value));
   };
 
-  if (active) {
-    return (
-      <Keyboard synth={synth} settings={parseScale(settings)} onQuit={() => setActive(false)} />
-    );
-  } else {
-    return (
-	  <div className="section">
+  const valid = s => (
+    ((s.output === "midi" && s.midi) || (s.output === "sample" && s.fundamental && s.instrument)) &&
+      s.rSteps && s.urSteps &&
+      s.hexSize && s.rotation &&
+      s.scale && s.equivSteps &&
+      (s.no_labels || s.number_or_name && s.names || !s.number_or_name) &&
+      ((s.spectrum_colors && s.fundamental_color) || s.note_colors)
+  );
+  return (
+    <div>
+      {loading === 0 && valid(settings) && (
+        <Keyboard synth={synth} settings={parseScale(settings)} onQuit={() => setActive(false)} />
+      )}
+	  <div id="sidebar" className={active ? "hide" : "show"}>
         {loading > 0 && (<div>Loading...</div>)}
 	    <div className="container">
 	      <h2>
             <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
-            <a href="http://terpstrakeyboard.com/play-it-now/">WebApp</a>
           </h2>
-		  <div className="row">
-            <img alt="" src={spacer} />
-          </div>
           <Settings settings={settings} presets={presets}
                     onChange={onChange} onSubmit={onSubmit}
                     instruments={instruments}
@@ -139,8 +168,8 @@ const App = () => {
         </div>
         <Blurb />
 	  </div>
-    )
-  };
+    </div>
+  );
 };
 
 

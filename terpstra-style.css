@@ -1,12 +1,31 @@
 body {
-    /*margin: 0;
-    padding: 0;
-    background-color: #000000;
-    color: white;*/
     /* TODO fix the size of this thing */
 	background-image: url("Pattern3D_06.png");
 	background-repeat: repeat;
 	background-position: top left;
 	background-attachment: fixed;
     overflow: scroll;
+}
+
+
+#sidebar{
+    width: 35vw;
+    min-width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+	background-image: url("Pattern3D_06.png");
+    background-color: white;
+    transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    overflow: scroll;
+    z-index: 1000;
+}
+
+#sidebar.hide {
+    transform: translate3d(-100vw, 0, 0);
+}
+
+#sidebar.show {
+    transform: translate3d(0vw, 0, 0);
 }

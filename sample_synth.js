@@ -19,8 +19,8 @@ export const create_sample_synth = async (fileName, fundamental) => {
     // TODO test this statement later
     const samples = [s110, s220, s440, s880];
     return {
-      makeHex: (note) => {
-        return new ActiveHex(note, fundamental, sampleFadeout, samples, audioContext);
+      makeHex: (coords, cents) => {
+        return new ActiveHex(coords, cents, fundamental, sampleFadeout, samples, audioContext);
       },
     };
   } catch (e) {
@@ -35,10 +35,11 @@ const loadSample = async (audioContext, name, freq) => {
   return sample;
 }
 
-function ActiveHex(coords, fundamental, sampleFadeout, sampleBuffer, audioContext) {
+function ActiveHex(coords, cents, fundamental, sampleFadeout, sampleBuffer, audioContext) {
   this.coords = coords;// these end up being used by the keys class
   this.release = false;
 
+  this.cents = cents;
   this.fundamental = fundamental;
   this.sampleFadeout = sampleFadeout;
   this.sampleBuffer = sampleBuffer;
@@ -46,8 +47,8 @@ function ActiveHex(coords, fundamental, sampleFadeout, sampleBuffer, audioContex
 }
 
 // Does this need to be a param or is it constant for the hex? i think constant
-ActiveHex.prototype.noteOn = function(cents) {
-  var freq = this.fundamental * Math.pow(2, cents / 1200);
+ActiveHex.prototype.noteOn = function() {
+  var freq = this.fundamental * Math.pow(2, this.cents / 1200);
   var source = this.audioContext.createBufferSource(); // creates a sound source
   // Choose sample
   var sampleFreq = 110;

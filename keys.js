@@ -42,9 +42,6 @@ class Keys {
     this.resizeHandler();
 
     // Set up keyboard, touch and mouse event handlers
-    //this.state.canvas.addEventListener("keydown", this.onKeyDown, false); // Firefox isn't firing :(
-    //this.state.canvas.addEventListener("keyup", this.onKeyUp, false);
-
     window.addEventListener("keydown", this.onKeyDown, false);
     window.addEventListener("keyup", this.onKeyUp, false);
     this.state.canvas.addEventListener("touchstart", this.handleTouch, false);
@@ -62,10 +59,10 @@ class Keys {
   }
 
   deconstruct = () => {
-    for (let hex in this.state.activeHexObjects) {
+    for (let hex of this.state.activeHexObjects) {
       hex.noteOff();
     }
-    for (let hex in this.sustainedNotes) {
+    for (let hex of this.state.sustainedNotes) {
       hex.noteOff();
     }
 
@@ -73,8 +70,6 @@ class Keys {
     window.removeEventListener('orientationchange', this.resizeHandler, false);
 
     // Set up keyboard, touch and mouse event handlers
-    //this.state.canvas.removeEventListener("keydown", this.onKeyDown, false); // Firefox isn't firing :(
-    //this.state.canvas.removeEventListener("keyup", this.onKeyUp, false);
     window.removeEventListener("keydown", this.onKeyDown, false);
     window.removeEventListener("keyup", this.onKeyUp, false);
     this.state.canvas.removeEventListener("touchstart", this.handleTouch, false);

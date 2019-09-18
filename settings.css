@@ -1,4 +1,4 @@
-.iosscrollable {
+textarea {
     height: auto;
     -webkit-overflow-scrolling: touch;
 }
