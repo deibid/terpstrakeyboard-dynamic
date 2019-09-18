@@ -63,8 +63,9 @@ const App = () => {
     // Output
     output: ExtractString,
     instrument: ExtractString,
-    midi: ExtractString,
     fundamental: ExtractFloat,
+    midi: ExtractString,
+    midi_channel: ExtractInt,
     // Layout
     rSteps: ExtractInt,
     urSteps: ExtractInt,
@@ -113,11 +114,11 @@ const App = () => {
           setSynth(s);
         });
     }
-    if (settings.output === "midi" && settings.midi) {
+    if (settings.output === "midi" && settings.midi && settings.midi_channel && settings.midi_velocity) {
       setLoading(l => l + 1);
-      create_midi_synth(midi.outputs.get(settings.midi))
+      create_midi_synth(midi.outputs.get(settings.midi), settings.midi_channel, settings.midi_velocity)
         .then(s => {
-          setLoading(l => l + 1);
+          setLoading(l => l - 1);
           setSynth(s);
         });
     }

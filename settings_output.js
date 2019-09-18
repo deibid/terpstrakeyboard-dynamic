@@ -39,12 +39,29 @@ const Output = (props) => (
       </select>
     </label>
     {(props.settings.output === "midi" && props.midi) && (
-      <label>
-        MIDI
-        <MidiSelect value={props.settings.midi}
-                    midi={props.midi}
-                    onChange={props.onChange}/>
-      </label>
+      <>
+        <label>
+          MIDI
+          <MidiSelect value={props.settings.midi}
+                      midi={props.midi}
+                      onChange={props.onChange}/>
+        </label>
+        <label>
+          MIDI Channel
+          <select value={props.settings.midi_channel}
+                  name="midi_channel"
+                  onChange={props.onChange}>
+            {[...Array(16).keys()].map(i => <option value={i}>{i+1}</option>)}
+          </select>
+        </label>
+        <label>
+          Velocity
+          <input name="midi_velocity" type="number"
+                 value={props.settings.midi_velocity}
+                 step="1" min="0" max="127"
+                 onChange={props.onChange} />
+        </label>
+      </>
     )}
     {props.settings.output === "sample" && (
       <>
