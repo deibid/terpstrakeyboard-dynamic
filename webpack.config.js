@@ -3,12 +3,17 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: "./index.js",
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js'
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   devtool: 'source-map',
   resolve: {
