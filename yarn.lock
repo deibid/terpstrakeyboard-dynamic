@@ -5158,7 +5158,7 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.5:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@^10.0.0-rc3:
+preact@10.0.0-rc.3:
   version "10.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0-rc.3.tgz#258d1bbf11744e0460b8681422cd6a0c18200df7"
 
