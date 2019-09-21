@@ -1,8 +1,8 @@
 // TODO channel select, velocity
 export const create_midi_synth = async (midi_output, channel, velocity) => {
     return {
-      makeHex: (coords, cents, relative_interval, steps, octaves, velocity) => {
-        return new MidiHex(coords, steps, midi_output, channel);
+      makeHex: (coords, cents, relative_interval, steps, octaves) => {
+        return new MidiHex(coords, steps, midi_output, channel, velocity);
       }
     };
 };
@@ -14,6 +14,7 @@ function MidiHex(coords, steps, midi, channel, velocity) {
   this.steps = steps;
   this.midi = midi;
   this.channel = channel;
+  this.velocity = velocity;
 }
 
 MidiHex.prototype.noteOn = function() {

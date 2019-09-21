@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import PropTypes from 'prop-types';
 
 const Layout = (props) => (
   <fieldset>
@@ -32,12 +33,22 @@ const Layout = (props) => (
       Rotation (degrees)
       <input name="rotation" type="number"
              value={props.settings.rotation}
-             step="any" min="0" max="360"
+             step="any" min="-360" max="360"
              onChange={props.onChange}
              />
     </label>
 
   </fieldset>
 );
+
+Layout.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  settings: PropTypes.shape({
+    rotation: PropTypes.number,
+    hexSize: PropTypes.number,
+    urSteps: PropTypes.number,
+    rSteps: PropTypes.number,
+  }),
+};
 
 export default Layout;

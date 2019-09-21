@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from 'preact/hooks';
 import Keys from './keys';
 import "./keyboard.css";
 import backArrow from './back.png';
+import PropTypes from 'prop-types';
 
 const Keyboard = (props) => {
   const canvas = useRef(null);
@@ -22,6 +23,36 @@ const Keyboard = (props) => {
            onClick={props.onQuit}/>
     </Fragment>
   );
+};
+
+Keyboard.propTypes = {
+  settings: PropTypes.shape({
+    keyCodeToCoords: PropTypes.object,
+    number_or_name: PropTypes.bool,
+    no_labels: PropTypes.bool,
+
+    // Output
+    output: PropTypes.string,
+    instrument: PropTypes.string,
+    fundamental: PropTypes.number,
+    midi: PropTypes.string,
+    midi_channel: PropTypes.number,
+    // Layout
+    rSteps: PropTypes.number,
+    urSteps: PropTypes.number,
+    hexSize: PropTypes.number,
+    rotation: PropTypes.number,
+    // Scale
+    scale: PropTypes.arrayOf(PropTypes.number),
+    equivInterval: PropTypes.number,
+    equivSteps: PropTypes.number,
+    names: PropTypes.arrayOf(PropTypes.string),
+    spectrum_colors: PropTypes.bool,
+    fundamental_color: PropTypes.string,
+    note_colors: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  synth: PropTypes.object.isRequired,
+  onQuit: PropTypes.func.isRequired,
 };
 
 export default Keyboard;

@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "development": "webpack --mode development"
+    "development": "webpack --mode development",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -20,6 +21,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.6.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
@@ -27,6 +29,7 @@
     "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prop-types": "^15.7.2",
     "raw-loader": "^3.1.0",
     "terser-webpack-plugin": "^2.1.0",
     "url-loader": "^2.1.0",
