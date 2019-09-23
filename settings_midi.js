@@ -3,7 +3,7 @@ import { Fragment } from 'preact/compat';
 import PropTypes from 'prop-types';
 
 const MidiSelect = (props) => (
-  <select name="midi" onChange={props.onChange}>
+  <select name="midi" onChange={(e) => props.onChange(e.target.name, e.target.value)}>
     <option disabled="disabled">Output Device</option>
     {Array.from(props.midi.outputs.values()).map(m => (
       <option value={m.id}>{m.name}</option>
@@ -23,7 +23,7 @@ const Midi = (props) => (
       MIDI Channel
       <select value={props.settings.midi_channel}
               name="midi_channel"
-              onChange={props.onChange}>
+              onChange={(e) => props.onChange(e.target.name, parseInt(e.target.value))}>
         {[...Array(16).keys()].map(i => <option value={i}>{i+1}</option>)}
       </select>
     </label>
@@ -32,7 +32,7 @@ const Midi = (props) => (
       <input name="midi_velocity" type="number"
              value={props.settings.midi_velocity}
              step="1" min="0" max="127"
-             onChange={props.onChange} />
+             onChange={(e) => props.onChange(e.target.name, parseInt(e.target.value))} />
     </label>
   </>
 );

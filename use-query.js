@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
 // todo return null if no query string?
-// todo default to string if not provided?
+// todo default extracrtor to string if not provided?
 export class Extract {
   constructor(from, to) {
     this.to = to;

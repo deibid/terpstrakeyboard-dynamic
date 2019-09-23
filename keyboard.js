@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Keyboard = (props) => {
   const canvas = useRef(null);
   useEffect(() => {
-    const keys = new Keys(canvas.current, props.settings, props.synth);
+    const keys = new Keys(canvas.current, props.settings, props.synth, props.active);
     return () => keys.deconstruct();
   }, [canvas, props.settings, props.synth]);
 

@@ -9,7 +9,7 @@ const Sample = (props) => (
       <input name="fundamental" type="number"
              value={props.settings.fundamental}
              step="any" min="0.015625" max="16384"
-             onChange={props.onChange} />
+             onChange={(e) => props.onChange(e.target.name, parseFloat(e.target.value))}/>
     </label>
     <label>
       Instrument
@@ -32,8 +32,7 @@ Sample.propTypes = {
 const Instruments = (props) => (
   <select name="instrument"
           value={props.value}
-          onChange={props.onChange}
-          >
+          onChange={(e) => props.onChange(e.target.name, e.target.value)} >
     {props.groups.map(group => (
       <optgroup label={group.name}>
         { group.instruments.map(instrument => (

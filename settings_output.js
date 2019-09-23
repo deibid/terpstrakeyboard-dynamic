@@ -11,7 +11,7 @@ const Output = (props) => (
       Output
       <select value={props.settings.output}
               name="output"
-              onChange={props.onChange}>
+             onChange={(e) => props.onChange(e.target.name, e.target.value)}>
         <option disabled="disabled">Choose output</option>
         {props.midi && (<option value="midi">MIDI</option>)}
         <option value="sample">Sample Synthesis</option>

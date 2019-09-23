@@ -2,14 +2,14 @@ import { Point, calculateRotationMatrix, applyMatrixToPoint } from './point';
 import { rgb, HSVtoRGB, HSVtoRGB2, nameToHex, hex2rgb, rgb2hsv, getContrastYIQ, rgbToHex } from './color_utils';
 
 class Keys {
-  constructor(canvas, settings, synth) {
+  constructor(canvas, settings, synth, typing) {
     this.settings = {
       hexHeight: settings.hexSize * 2,
       hexVert: settings.hexSize * 3 / 2,
       hexWidth: Math.sqrt(3) * settings.hexSize,
       ...settings,
     };
-
+    this.typing = typing;
     this.synth = synth;
     this.state = {
       canvas,
@@ -42,8 +42,10 @@ class Keys {
     this.resizeHandler();
 
     // Set up keyboard, touch and mouse event handlers
-    window.addEventListener("keydown", this.onKeyDown, false);
-    window.addEventListener("keyup", this.onKeyUp, false);
+    if (this.typing) {
+      window.addEventListener("keydown", this.onKeyDown, false);
+      window.addEventListener("keyup", this.onKeyUp, false);
+    }
     this.state.canvas.addEventListener("touchstart", this.handleTouch, false);
     this.state.canvas.addEventListener("touchend", this.handleTouch, false);
     this.state.canvas.addEventListener("touchmove", this.handleTouch, false);
@@ -70,8 +72,10 @@ class Keys {
     window.removeEventListener('orientationchange', this.resizeHandler, false);
 
     // Set up keyboard, touch and mouse event handlers
-    window.removeEventListener("keydown", this.onKeyDown, false);
-    window.removeEventListener("keyup", this.onKeyUp, false);
+    if (this.typing) {
+      window.removeEventListener("keydown", this.onKeyDown, false);
+      window.removeEventListener("keyup", this.onKeyUp, false);
+    }
     this.state.canvas.removeEventListener("touchstart", this.handleTouch, false);
     this.state.canvas.removeEventListener("touchend", this.handleTouch, false);
     this.state.canvas.removeEventListener("touchmove", this.handleTouch, false);
@@ -563,17 +567,6 @@ class Keys {
 
     return (closestHex);
   }
-}
-
-// TODO something else
-function tempAlert(msg, duration) {
-  var el = document.createElement("div");
-  el.setAttribute("style", "position:absolute;top:40%;left:20%;background-color:white; font-size:25px;");
-  el.innerHTML = msg;
-  setTimeout(function() {
-    el.parentNode.removeChild(el);
-  }, duration);
-  document.body.appendChild(el);
 }
 
 export default Keys;

@@ -7,7 +7,7 @@ const KeyLabels = (props) => (
   <>
     <label>
       Key Labels
-      <select name="key_labels" value={props.settings.key_labels} onChange={props.onChange}>
+      <select name="key_labels" value={props.settings.key_labels} onChange={(e) => props.onChange(e.target.name, e.target.value)}>
         <option value="no_labels">Blank Keys (No Labels)</option>
         <option value="enumerate">Enumerate Scale</option>
         <option value="names">Note Names</option>
@@ -19,7 +19,7 @@ const KeyLabels = (props) => (
         <input name="equivSteps" type="number"
                min="1" max="999"
                value={props.settings.equivSteps}
-               onChange={props.onChange}
+               onChange={(e) => props.onChange(e.target.name, parseInt(e.target.value))}
         />
       </label>
     )}
@@ -59,19 +59,19 @@ const ScaleTable = (props) => {
   const scaleChange = e => {
     const next = [...props.settings.scale];
     next[parseInt(e.target.name.replace(/scale/, ""))] = e.target.value;
-    props.scaleChange(next);
+    props.onChange("scale", next);
   };
 
   const colorChange = e => {
     const next = [...props.settings.note_colors];
     next[parseInt(e.target.name.replace(/color/, ""))] = e.target.value;
-    props.colorChange(next);
+    props.onChange("note_colors", next);
   };
 
   const nameChange = e => {
     const next = [...props.settings.names];
     next[parseInt(e.target.name.replace(/name/, ""))] = e.target.value;
-    props.nameChange(next);
+    props.onChange("names", next);
   };
 
   const editable_labels = props.settings.key_labels !== "names";
@@ -130,9 +130,6 @@ const ScaleTable = (props) => {
 
 ScaleTable.propTypes = {
   onChange: PropTypes.func.isRequired,
-  colorChange: PropTypes.func.isRequired,
-  scaleChange: PropTypes.func.isRequired,
-  nameChange: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     scale: PropTypes.arrayOf(PropTypes.string),
     key_labels: PropTypes.string,
@@ -158,15 +155,14 @@ const Colors = (props) => (
       Use Spectrum Colors
       <input name="spectrum_colors" type="checkbox"
              checked={props.settings.spectrum_colors}
-             onChange={props.onChange}/>
+             onChange={(e) => props.onChange(e.target.name, e.target.checked)} />
 
     </label>
     {props.settings.spectrum_colors && (
       <label>
         Fundamental Color
         <input name="fundamental_color" type="color"
-
-               onChange={props.onChange}
+               onChange={(e) => props.onChange(e.target.name, e.target.value)}
                value={props.settings.fundamental_color}/>
       </label>
     )}
@@ -187,7 +183,7 @@ const Scale = (props) => (
     <ScaleTable {...props} />
     <label>
       Scale (<a href="http://www.huygens-fokker.org/scala/scl_format.html" target="new">Scala format</a>)
-      <textarea name="scale_import" onChange={props.onChange}
+      <textarea name="scale_import" onChange={(e) => props.onChange(e.target.name, e.target.value)}
                 rows="12" value={props.settings.scale_import}
       />
     </label>
