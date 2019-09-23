@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import { Fragment } from 'preact/compat';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
@@ -177,26 +178,40 @@ Colors.propTypes = {
   }),
 };
 
-const Scale = (props) => (
+const Scale = (props) => {
+  const [importing, setImporting] = useState(false);
+  return (
   <fieldset>
     <legend>Scale</legend>
-    <ScaleTable {...props} />
-    <label>
-      Scale (<a href="http://www.huygens-fokker.org/scala/scl_format.html" target="new">Scala format</a>)
-      <textarea name="scale_import" onChange={(e) => props.onChange(e.target.name, e.target.value)}
-                rows="12" value={props.settings.scale_import}
-      />
-    </label>
+    {importing ? <ScalaImport {...props}/>: <ScaleTable {...props} />}
+    <button type="button" onClick={() => setImporting(s => !s)} >
+      {importing ? "Done" : "Import" }
+    </button>
     <KeyLabels {...props}/>
     <Colors {...props}/>
   </fieldset>
-);
+  );
+};
 
 Scale.propTypes = {
   onChange: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired
+};
+
+const ScalaImport = (props) => (
+  <label>
+    Scale (<a href="http://www.huygens-fokker.org/scala/scl_format.html" target="new">Scala format</a>)
+    <textarea name="scale_import" onChange={(e) => props.onChange(e.target.name, e.target.value)}
+              rows="12" value={props.settings.scale_import}
+    />
+  </label>
+);
+
+ScalaImport.propTypes = {
+  onChange: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     scale_import: PropTypes.string,
-  })
+  }).isRequired,
 };
 
 export default Scale;

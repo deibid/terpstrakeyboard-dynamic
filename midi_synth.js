@@ -1,3 +1,4 @@
+// TODO midi panic button
 export const create_midi_synth = async (midi_output, channel, velocity) => {
     return {
       makeHex: (coords, cents, relative_interval, steps, octaves) => {
