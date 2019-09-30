@@ -1,18 +1,18 @@
-import scale_12_ed2 from './scales/12-ed2.scl';
-import scale_12_ji_7l from './scales/12-JI-7L.scl';
-import scale_7_ji_rast_maqam from './scales/7-JI Rast Maqam (Arabic) —  Eight Echos (Fourth Plagal, Byzantine).scl';
-import scale_17_ji_5l from './scales/17-JI-5L-Arabic-theoretical.scl';
-import scale_17_ji_11l_wilson from './scales/17-JI-11L-Wilson.scl';
-import scale_22_ji_5l from './scales/22-JI-5L-Indian.scl';
-import scale_31_ji_7l_fokker from './scales/31-JI-7L-Fokker.scl';
-import scale_53_ri_3l_male_western from './scales/53-RI-3L-Male-Western.scl';
-import scale_53_ri_3l_female_eastern from './scales/53-RI-3L-Female-Eastern.scl';
-import scale_19_ed2 from './scales/19-ed2.scl';
-import scale_31_ed2 from './scales/31-ed2.scl';
-import scale_41_ed2 from './scales/41-ed2.scl';
-import scale_43_ji_11l_partch from './scales/43-JI-11L-Partch.scl';
-import scale_12_stretched_inharmonic6_harmonic7 from './scales/12-Stretched_inharmonic6=harmonic7.scl';
-import scale_wmri_in7_har6 from './scales/WMRI-in7-har6-.scl';
+import scale_12_ed2 from 'scales/12-ed2.scl';
+import scale_12_ji_7l from 'scales/12-JI-7L.scl';
+import scale_7_ji_rast_maqam from 'scales/7-JI Rast Maqam (Arabic) —  Eight Echos (Fourth Plagal, Byzantine).scl';
+import scale_17_ji_5l from 'scales/17-JI-5L-Arabic-theoretical.scl';
+import scale_17_ji_11l_wilson from 'scales/17-JI-11L-Wilson.scl';
+import scale_22_ji_5l from 'scales/22-JI-5L-Indian.scl';
+import scale_31_ji_7l_fokker from 'scales/31-JI-7L-Fokker.scl';
+import scale_53_ri_3l_male_western from 'scales/53-RI-3L-Male-Western.scl';
+import scale_53_ri_3l_female_eastern from 'scales/53-RI-3L-Female-Eastern.scl';
+import scale_19_ed2 from 'scales/19-ed2.scl';
+import scale_31_ed2 from 'scales/31-ed2.scl';
+import scale_41_ed2 from 'scales/41-ed2.scl';
+import scale_43_ji_11l_partch from 'scales/43-JI-11L-Partch.scl';
+import scale_12_stretched_inharmonic6_harmonic7 from 'scales/12-Stretched_inharmonic6=harmonic7.scl';
+import scale_wmri_in7_har6 from 'scales/WMRI-in7-har6-.scl';
 
 const scale_12_ed2_names = ["C", "D♭/C♯", "D", "E♭/D♯", "E", "F", "G♭/F♯", "G", "A♭/G♯", "A", "B♭/A♯", "B"]
 

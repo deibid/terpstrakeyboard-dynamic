@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  entry: "./index.js",
+  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js'
@@ -24,6 +24,7 @@ module.exports = {
       'react': 'preact/compat',
       'react-dom/test-utils': 'preact/test-utils',
       'react-dom': 'preact/compat', // Must be below test-utils
+      scales: path.resolve(__dirname, 'scales'),
     }
   },
   module: {
@@ -56,7 +57,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template: "./keys.htm", }),
+    new HtmlWebpackPlugin({template: "./src/keys.htm", }),
     new CopyWebpackPlugin([
       // TODO generate manifest
       {from: "manifest.webmanifest", to: './'},

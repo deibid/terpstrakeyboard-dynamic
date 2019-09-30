@@ -1,8 +1,8 @@
 import { h } from 'preact';
 import { Fragment } from 'preact/compat';
 import PropTypes from 'prop-types';
-import Sample from './settings_sample';
-import Midi from './settings_midi';
+import Sample from './sample';
+import Midi from './midi';
 
 const Output = (props) => (
   <fieldset>

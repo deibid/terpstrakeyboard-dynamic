@@ -1,8 +1,8 @@
 import { h } from 'preact';
-import Scale from './settings_scale';
-import Layout from './settings_layout';
-import Output from './settings_output';
-import Presets from './settings_presets';
+import Scale from './scale';
+import Layout from './layout';
+import Output from './output';
+import Presets from './presets';
 
 const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, instruments, onSubmit}) => (
   <form>
