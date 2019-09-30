@@ -12,7 +12,7 @@ import keyCodeToCoords from './keycodes';
 // import "normalize.css";
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css"
-import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool } from './use-query';
+import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractStringArray } from './use-query';
 
 import Settings from './settings';
 import Blurb from './blurb';
@@ -66,8 +66,8 @@ const normalize = (settings) => {
 
 const App = () => {
   const [loading, setLoading] = useState(0);
-  // const [settings, setSettings] = useState(default_settings);
-
+  const [settings, setSettings] = useState(default_settings);
+  /*
   const [settings, setSettings] = useQuery({
     // Output
     output: ExtractString,
@@ -92,15 +92,17 @@ const App = () => {
     fundamental_color: ExtractString,
     note_colors: ExtractStringArray
     //
-  });
-
+  }, default_settings);
+  */
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
   const [midi, setMidi] = useState(null);
+  const wait = l => l + 1;
+  const signal = l => l - 1;
 
   useEffect(() => {
     if (navigator.requestMIDIAccess) {
-      setLoading(l => l + 1);
+      setLoading(wait);
       navigator.requestMIDIAccess().then(m => {
         setLoading(l => l - 1);
         setMidi(m)
@@ -111,23 +113,23 @@ const App = () => {
   useEffect(() => {
     if (settings.output === "sample"
         && settings.instrument && settings.fundamental) {
-      setLoading(l => l + 1);
+      setLoading(wait);
       create_sample_synth(settings.instrument,
                           settings.fundamental)
         .then(s => {
-          setLoading(l => l - 1);
+          setLoading(signal);
           setSynth(s);
         });
     }
     if (settings.output === "midi" && settings.midi &&
         typeof settings.midi_channel === "number" &&
         typeof settings.midi_velocity === "number") {
-      setLoading(l => l + 1);
+      setLoading(wait);
       create_midi_synth(midi.outputs.get(settings.midi),
                         settings.midi_channel,
                         settings.midi_velocity)
         .then(s => {
-          setLoading(l => l - 1);
+          setLoading(signal);
           setSynth(s);
         });
     }

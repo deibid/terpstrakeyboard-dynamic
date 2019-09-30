@@ -47,8 +47,8 @@ export const ExtractIntArray = new Extract(x => Number.parseInt(x), x => x.toStr
 export const ExtractBool = new Extract(x => x === "true", x => x.toString());
 export const ExtractBoolArray = new Extract(x => x === "true", x => x.toString());
 
-export function useQuery(spec) {
-  const [values, setValues] = useState({});
+export function useQuery(spec, defaults) {
+  const [values, setValues] = useState(document.location.search.length > 0 ? {} : defaults);
 
   function handle(e) {
     const query = new URLSearchParams(document.location.search.substring(1));
