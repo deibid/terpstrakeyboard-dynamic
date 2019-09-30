@@ -1,4 +1,5 @@
-import { Point, calculateRotationMatrix, applyMatrixToPoint } from './point';
+import Point from '../point';
+import { calculateRotationMatrix, applyMatrixToPoint } from './matrix';
 
 describe('Calculating rotation matrix at origin', () => {
   test('rotation matrix for 0 degree rotation', () => {

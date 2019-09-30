@@ -1,4 +1,4 @@
-import { Point } from './point';
+import Point from '../point';
 
 const keyCodeToCoords = {
   49 : new Point(-5, -2), // 1

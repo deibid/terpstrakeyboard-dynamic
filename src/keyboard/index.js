@@ -2,7 +2,7 @@ import { h, render, Fragment } from 'preact';
 import { useRef, useEffect, useState } from 'preact/hooks';
 import Keys from './keys';
 import "./keyboard.css";
-import backArrow from './back.png';
+import backArrow from '../back.png';
 import PropTypes from 'prop-types';
 
 const Keyboard = (props) => {

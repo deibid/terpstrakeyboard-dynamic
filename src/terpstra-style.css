@@ -34,10 +34,6 @@ label {
     justify-content: space-between;
 }
 
-table input {
-    width: 100%;
-}
-
 table td {
     padding: 0;
 }

@@ -1,4 +1,5 @@
-import { Point, calculateRotationMatrix, applyMatrixToPoint } from './point';
+import { calculateRotationMatrix, applyMatrixToPoint } from './matrix';
+import Point from '../point';
 import { rgb, HSVtoRGB, HSVtoRGB2, nameToHex, hex2rgb, rgb2hsv, getContrastYIQ, rgbToHex } from './color_utils';
 
 class Keys {
