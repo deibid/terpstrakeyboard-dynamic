@@ -2,7 +2,7 @@ import { h, render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import "regenerator-runtime/runtime";
 import Keyboard from './keyboard';
-import {presets, default_settings} from './presets';
+import {presets, default_settings, parseScale} from './presets';
 import {create_sample_synth, instruments} from './sample_synth';
 import {create_midi_synth} from './midi_synth';
 import keyCodeToCoords from './keycodes';
@@ -13,6 +13,7 @@ import keyCodeToCoords from './keycodes';
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css"
 import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool } from './use-query';
+
 import Settings from './settings';
 import Blurb from './blurb';
 
@@ -65,8 +66,8 @@ const normalize = (settings) => {
 
 const App = () => {
   const [loading, setLoading] = useState(0);
-  const [settings, setSettings] = useState(default_settings);
-/*
+  // const [settings, setSettings] = useState(default_settings);
+
   const [settings, setSettings] = useQuery({
     // Output
     output: ExtractString,
@@ -92,7 +93,7 @@ const App = () => {
     note_colors: ExtractStringArray
     //
   });
-*/
+
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
   const [midi, setMidi] = useState(null);
@@ -140,6 +141,16 @@ const App = () => {
     setSettings(_ => findPreset(e.target.value));
   };
 
+  const onImport = () => {
+    setSettings(s => {
+      if (s.scale_import) {
+        return {...s, scale: parseScale(s.scale_import)};
+      } else {
+        return s;
+      }
+    });
+  };
+
   const valid = s => (
     ((s.output === "midi" && s.midi && s.midi_channel && s.midi_velocity) ||
      (s.output === "sample" && s.fundamental && s.instrument)) &&
@@ -154,7 +165,8 @@ const App = () => {
     <div>
       {loading === 0 && valid(settings) && synth && (
         <Keyboard synth={synth} settings={normalize(settings)}
-                  active={active} onQuit={() => setActive(false)} />
+                  active={active}
+                  onQuit={() => setActive(false)} />
       )}
 	  <div id="sidebar" className={active ? "hide" : "show"}>
         {loading > 0 && (<div>Loading...</div>)}
@@ -164,6 +176,7 @@ const App = () => {
           <Settings presetChanged={presetChanged}
                     presets={presets}
                     onChange={onChange}
+                    onImport={onImport}
                     settings={settings}
                     midi={midi}
                     instruments={instruments}

@@ -77,7 +77,6 @@ const ScaleTable = (props) => {
 
   const editable_labels = props.settings.key_labels !== "names";
   const editable_colors = props.settings.spectrum_colors;
-  // todo import from scale textarea
   return (
     <table>
       <thead>
@@ -180,12 +179,19 @@ Colors.propTypes = {
 
 const Scale = (props) => {
   const [importing, setImporting] = useState(false);
+  const doImport = () => {
+    if (importing) {
+      props.onImport();
+    }
+    setImporting(s => !s);
+  };
+
   return (
   <fieldset>
     <legend>Scale</legend>
     {importing ? <ScalaImport {...props}/>: <ScaleTable {...props} />}
-    <button type="button" onClick={() => setImporting(s => !s)} >
-      {importing ? "Done" : "Import" }
+    <button type="button" onClick={doImport} >
+      {importing ? "Done" : "Import..." }
     </button>
     <KeyLabels {...props}/>
     <Colors {...props}/>
