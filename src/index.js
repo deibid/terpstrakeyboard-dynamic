@@ -9,7 +9,7 @@ import keyCodeToCoords from './settings/keycodes';
 // import "./normalize.css";
 //import "./skeleton.css";
 // These can be pulled from npm, but have been modified.
-import "normalize.css";
+//import "normalize.css";
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css"
 import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractStringArray } from './use-query';
