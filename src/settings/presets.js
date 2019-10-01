@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Presets = (props) => (
   <select onChange={props.onChange} >
-    <option disabled="disabled">Choose Preset</option>
+    <option>Choose Preset</option>
     {props.presets.map(group => (
       <optgroup label={group.name}>
         {group.settings.map(setting => (
