@@ -182,9 +182,9 @@ class Keys {
     }
     this.state.context.save();
 
-    this.state.rotationMatrix = calculateRotationMatrix(-this.settings.rotation, this.state.centerpoint);
+    this.state.rotationMatrix = calculateRotationMatrix(-this.settings.rotation * Math.PI / 180, this.state.centerpoint);
 
-    var m = calculateRotationMatrix(this.settings.rotation, this.state.centerpoint);
+    var m = this.state.rotationMatrix;
     this.state.context.setTransform(m[0], m[1], m[2], m[3], m[4], m[5]);
 
     // Redraw Grid
@@ -427,7 +427,7 @@ class Keys {
 
     context.save();
     context.translate(hexCenter.x, hexCenter.y);
-    context.rotate(-this.settings.rotation);
+    context.rotate(-this.settings.rotation * Math.PI / 180);
     // hexcoords = p and screenCoords = hexCenter
 
     //context.fillStyle = "black"; //bdl_04062016
