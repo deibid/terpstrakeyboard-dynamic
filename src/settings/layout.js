@@ -30,7 +30,7 @@ const Layout = (props) => (
       Rotation (degrees)
       <input name="rotation" type="number"
              value={props.settings.rotation}
-             step="any" min="-360" max="360"
+             step="0.05" min="-360" max="360"
              onChange={(e) => props.onChange(e.target.name, parseFloat(e.target.value))}/>
     </label>
 

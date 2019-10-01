@@ -154,10 +154,10 @@ const App = () => {
   };
 
   const valid = s => (
-    ((s.output === "midi" && s.midi && s.midi_channel && s.midi_velocity) ||
+    ((s.output === "midi" && s.midi && typeof s.midi_channel === "number" && typeof s.midi_velocity === "number") ||
      (s.output === "sample" && s.fundamental && s.instrument)) &&
       s.rSteps && s.urSteps &&
-      s.hexSize && s.hexSize >= 30 && s.rotation &&
+      s.hexSize && s.hexSize >= 30 && typeof s.rotation === "number" &&
       s.scale && s.equivSteps &&
       (s.no_labels || s.number_or_name && s.names || !s.number_or_name) &&
       ((s.spectrum_colors && s.fundamental_color) || s.note_colors)

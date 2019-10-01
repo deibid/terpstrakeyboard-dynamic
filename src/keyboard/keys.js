@@ -418,7 +418,7 @@ class Keys {
       context.lineTo(x[i], y[i]);
     }
     context.closePath();
-    context.lineWidth = 2;p
+    context.lineWidth = 2;
     context.lineJoin = 'round';
     context.strokeStyle = 'black';
     context.stroke();
