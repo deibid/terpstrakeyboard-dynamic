@@ -47,7 +47,7 @@ const findPreset = (preset) => {
 const normalize = (settings) => {
   const fundamental_color = (settings.fundamental_color || "").replace(/#/, '');
   const note_colors = settings.note_colors.map(c => c.replace(/#/, ''));
-  const rotation = settings.rotation * (Math.PI / 180.0); // convert to radians
+  const rotation = settings.rotation * Math.PI / 180.0; // convert to radians
   const result = {...settings, fundamental_color, keyCodeToCoords, note_colors, rotation};
   if (settings.key_labels === "enumerate") {
     result["number_or_name"] = true;

@@ -184,7 +184,8 @@ class Keys {
 
     this.state.rotationMatrix = calculateRotationMatrix(-this.settings.rotation, this.state.centerpoint);
 
-    var m = this.state.rotationMatrix;
+    // I don't know why these need to be the opposite sign of each other.
+    var m = calculateRotationMatrix(this.settings.rotation, this.state.centerpoint);
     this.state.context.setTransform(m[0], m[1], m[2], m[3], m[4], m[5]);
 
     // Redraw Grid
