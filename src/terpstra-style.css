@@ -9,56 +9,53 @@ body {
 }
 
 
-#sidebar{
-    width: 32em;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-	background-image: url("Pattern3D_06.png");
+#sidebar, #sidebar-header {
+    transition: transform .3s ease-in-out;
     background-color: white;
-    transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    width: 420px;
+    left: 0;
+    position: fixed;
+    z-index: 10;
+}
+
+#sidebar-header {
+    height: 5em;
+    top: 0;
+}
+
+#sidebar {
+    height: 100vh;
+    top: 5em;
+	background-image: url("Pattern3D_06.png");
     overflow: scroll;
-    z-index: 1000;
+    z-index: 10;
 }
 
-#sidebar.hide {
-    transform: translate(-32em, 0);
+.hide #sidebar, .hide #sidebar-header {
+    transform: translate(-420px, 0);
 }
 
-#sidebar.show {
+.show #sidebar, .show #sidebar-header {
     transform: translate(0, 0);
+}
+
+.show #sidebar-button {
+    transform: translate(-100%, 0);
+}
+
+.hide #sidebar-button {
+    transform: translate(-420px, 0);
 }
 
 #sidebar-button {
     position: fixed;
-    transition: transform .3s cubic-bezier(0,.52,0,1);
     top: 0;
-    left: 32em;
-}
-
-#sidebar-button.hide {
-    transform: translate(-32em, 0);
-}
-
-#sidebar-button.show {
-    transform: translate(0, 0);
-}
-
-#sidebar-button button {
+    left: 420px;
     height: 5em;
-    border-radius: 0 0 6px 0;
-    border-left: none;
-    border-top: none;
+    z-index: 11;
+    transition: transform .3s ease-in-out;
 }
 
-#sidebar-button.hide button {
-    background: #f0f0f0;
-}
-
-#sidebar-button.show button {
-    background: white;
-}
 
 label {
     display: flex;

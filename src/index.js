@@ -168,20 +168,23 @@ const App = () => {
   );
   // TODO better sidebar toggle mechanism than the button and back arrow
   return (
-    <div>
+    <div className={active ? "hide" : "show"}>
       {loading === 0 && valid(settings) && synth && (
         <Keyboard synth={synth} settings={normalize(settings)}
                   active={active} />
       )}
-      <div id="sidebar-button" className={active ? "hide" : "show"}>
-        <button onClick={() => setActive(s => !s)}>Configure</button>
-      </div>
-	  <div id="sidebar" className={active ? "hide" : "show"}>
-        {loading > 0 && <Loading/>}
-	      <h2>
-            <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
-          </h2>
-          <Settings presetChanged={presetChanged}
+
+      <button id="sidebar-button" onClick={() => setActive(s => !s)}>
+        {active ? "Open" : "Close"}
+      </button>
+      <header id="sidebar-header" >
+        <h2>
+          <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
+        </h2>
+      </header>
+      {loading > 0 && <Loading/>}
+	  <nav id="sidebar">
+        <Settings presetChanged={presetChanged}
                     presets={presets}
                     onChange={onChange}
                     onImport={onImport}
@@ -189,7 +192,7 @@ const App = () => {
                     midi={midi}
                     instruments={instruments}/>
         <Blurb />
-	  </div>
+	  </nav>
     </div>
   );
 };
