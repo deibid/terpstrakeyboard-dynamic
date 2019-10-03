@@ -4,11 +4,13 @@ body {
 	background-position: top left;
 	background-attachment: fixed;
     overflow: scroll;
+    font-family: Helvetica,Arial,Roboto,"Open Sans",sans-serif;
+    font-size: small;
 }
 
 
 #sidebar{
-    width: 400px;
+    width: 32em;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -21,11 +23,41 @@ body {
 }
 
 #sidebar.hide {
-    transform: translate3d(-400px, 0, 0);
+    transform: translate(-32em, 0);
 }
 
 #sidebar.show {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
+}
+
+#sidebar-button {
+    position: fixed;
+    transition: transform .3s cubic-bezier(0,.52,0,1);
+    top: 0;
+    left: 32em;
+}
+
+#sidebar-button.hide {
+    transform: translate(-32em, 0);
+}
+
+#sidebar-button.show {
+    transform: translate(0, 0);
+}
+
+#sidebar-button button {
+    height: 5em;
+    border-radius: 0 0 6px 0;
+    border-left: none;
+    border-top: none;
+}
+
+#sidebar-button.hide button {
+    background: #f0f0f0;
+}
+
+#sidebar-button.show button {
+    background: white;
 }
 
 label {
@@ -36,10 +68,6 @@ label {
 table {
     padding: 0;
     border-collapse: collapse;
-}
-
-table input[type="text"] {
-    width: 100%;
 }
 
 table td {

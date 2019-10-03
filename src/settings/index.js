@@ -4,7 +4,7 @@ import Layout from './layout';
 import Output from './output';
 import Presets from './presets';
 
-const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, instruments, onSubmit}) => (
+const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, instruments}) => (
   <form>
     <label>
       Presets
@@ -14,10 +14,6 @@ const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, i
     <Layout onChange={onChange} settings={settings} />
     <Output onChange={onChange} settings={settings}
             instruments={instruments} midi={midi} />
-
-    <button onClick={onSubmit} type="button">
-      Make me a microtonal keyboard!
-    </button>
   </form>
 );
 

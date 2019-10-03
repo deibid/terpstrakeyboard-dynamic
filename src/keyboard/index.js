@@ -2,7 +2,6 @@ import { h, render, Fragment } from 'preact';
 import { useRef, useEffect, useState } from 'preact/hooks';
 import Keys from './keys';
 import "./keyboard.css";
-import backArrow from '../back.png';
 import PropTypes from 'prop-types';
 
 const Keyboard = (props) => {
@@ -18,9 +17,6 @@ const Keyboard = (props) => {
               width="1897" height="936"
               style="height: 936px; width: 1897px; margin-top: -468px; margin-left: -948.5px;">
       </canvas>
-      <img alt="Return to keyboard design"
-           src={backArrow} className="backButton"
-           onClick={props.onQuit}/>
     </Fragment>
   );
 };

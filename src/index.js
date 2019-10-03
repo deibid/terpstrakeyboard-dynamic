@@ -169,9 +169,11 @@ const App = () => {
     <div>
       {loading === 0 && valid(settings) && synth && (
         <Keyboard synth={synth} settings={normalize(settings)}
-                  active={active}
-                  onQuit={() => setActive(false)} />
+                  active={active} />
       )}
+      <div id="sidebar-button" className={active ? "hide" : "show"}>
+        <button onClick={() => setActive(s => !s)}>Configure</button>
+      </div>
 	  <div id="sidebar" className={active ? "hide" : "show"}>
         {loading > 0 && <Loading/>}
 	      <h2>
@@ -183,8 +185,7 @@ const App = () => {
                     onImport={onImport}
                     settings={settings}
                     midi={midi}
-                    instruments={instruments}
-                    onSubmit={() => setActive(true)}/>
+                    instruments={instruments}/>
         <Blurb />
 	  </div>
     </div>
