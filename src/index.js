@@ -21,15 +21,17 @@ import Blurb from './blurb';
 import {options} from 'preact';
 import PropTypes from 'prop-types';
 
-// installs global prop type checking for app preact components
-options.vnode = vnode => {
-  let Component = vnode.type;
-  if (Component && Component.propTypes) {
-    PropTypes.checkPropTypes(
-      Component.propTypes,
-      vnode.props
-    );
-  }
+if (process.env.NODE_ENV !== "production") {
+  // installs global prop type checking for app preact components
+  options.vnode = vnode => {
+    let Component = vnode.type;
+    if (Component && Component.propTypes) {
+      PropTypes.checkPropTypes(
+        Component.propTypes,
+        vnode.props
+      );
+    }
+  };
 }
 
 const findPreset = (preset) => {
