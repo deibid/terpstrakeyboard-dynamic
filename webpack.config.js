@@ -30,7 +30,23 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: "/node_modules",
-        loader: "babel-loader"},
+        loader: "babel-loader"
+      },
+      {
+        test: /\.svg$/,
+        use: [{
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              "plugins": [
+                {mergePaths: false},
+                {prefixIds: false},
+                {cleanupIDs: false}
+              ]
+            }
+          }
+        }],
+      },
       {
         test: /\.css$/,
         use: [

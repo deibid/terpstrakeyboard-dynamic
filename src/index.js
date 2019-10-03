@@ -13,6 +13,7 @@ import keyCodeToCoords from './settings/keycodes';
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css"
 import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractStringArray } from './use-query';
+import Loading from './hex.svg';
 
 import Settings from './settings';
 import Blurb from './blurb';
@@ -172,7 +173,7 @@ const App = () => {
                   onQuit={() => setActive(false)} />
       )}
 	  <div id="sidebar" className={active ? "hide" : "show"}>
-        {loading > 0 && (<div>Loading...</div>)}
+        {loading > 0 && <Loading/>}
 	      <h2>
             <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
           </h2>
