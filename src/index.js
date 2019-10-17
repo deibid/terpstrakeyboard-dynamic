@@ -108,8 +108,8 @@ const App = () => {
     if (navigator.requestMIDIAccess) {
       setLoading(wait);
       navigator.requestMIDIAccess().then(m => {
-        setLoading(l => l - 1);
-        setMidi(m)
+        setLoading(signal);
+        setMidi(m);
       });
     }
   }, []);

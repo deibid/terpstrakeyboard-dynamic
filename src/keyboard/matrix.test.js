@@ -7,7 +7,7 @@ describe('Calculating rotation matrix at origin', () => {
       .toStrictEqual([1, 0, -0.0, 1, 0, 0]);
   });
   test('rotation matrix for 60 degree rotation', () => {
-    expect(calculateRotationMatrix(60, new Point(0, 0)))
+    expect(calculateRotationMatrix(60 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         -0.9524129804151563,
         -0.3048106211022167,
@@ -18,7 +18,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for 90 degree rotation', () => {
-    expect(calculateRotationMatrix(90, new Point(0, 0)))
+    expect(calculateRotationMatrix(90 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         -0.4480736161291702,
         0.8939966636005579,
@@ -29,7 +29,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for 120 degree rotation', () => {
-    expect(calculateRotationMatrix(120, new Point(0, 0)))
+    expect(calculateRotationMatrix(120 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         0.8141809705265618,
         0.5806111842123143,
@@ -40,7 +40,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for 143 degree rotation', () => {
-    expect(calculateRotationMatrix(143, new Point(0, 0)))
+    expect(calculateRotationMatrix(143 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         0.05750252534912421,
         -0.9983453608739179,
@@ -51,7 +51,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for 180 degree rotation', () => {
-    expect(calculateRotationMatrix(180, new Point(0, 0)))
+    expect(calculateRotationMatrix(PI, new Point(0, 0)))
       .toStrictEqual([
         -0.5984600690578581,
         -0.8011526357338304,
@@ -62,7 +62,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for 273.5672 degree rotation', () => {
-    expect(calculateRotationMatrix(273.5672, new Point(0, 0)))
+    expect(calculateRotationMatrix(273.5672 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         -0.9692482071439977,
         -0.2460851741737932,
@@ -73,11 +73,11 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test.skip('rotation matrix for 360 degree rotation', () => {
-    expect(calculateRotationMatrix(360, new Point(0, 0)))
+    expect(calculateRotationMatrix(2 * PI, new Point(0, 0)))
       .toStrictEqual([1, 0, -0.0, 1, 0, 0]);
   });
   test('rotation matrix for -273.5672 degree rotation', () => {
-    expect(calculateRotationMatrix(-273.5672, new Point(0, 0)))
+    expect(calculateRotationMatrix(-273.5672 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         -0.9692482071439977,
         0.2460851741737932,
@@ -88,7 +88,7 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test('rotation matrix for -6 degree rotation', () => {
-    expect(calculateRotationMatrix(-6, new Point(0, 0)))
+    expect(calculateRotationMatrix(-6 * PI / 180, new Point(0, 0)))
       .toStrictEqual([
         0.9601702866503661,
         0.27941549819892586,
@@ -99,11 +99,11 @@ describe('Calculating rotation matrix at origin', () => {
       ]);
   });
   test.skip('rotation matrix for -360 degree rotation', () => {
-    expect(calculateRotationMatrix(-360, new Point(0, 0)))
+    expect(calculateRotationMatrix(-2 * PI, new Point(0, 0)))
       .toStrictEqual([1, 0, -0.0, 1, 0, 0]);
   });
   test.skip('rotation matrix for 720 degree rotation', () => {
-    expect(calculateRotationMatrix(720, new Point(0, 0)))
+    expect(calculateRotationMatrix(4 * PI, new Point(0, 0)))
       .toStrictEqual([1, 0, -0.0, 1, 0, 0]);
   });
 });
@@ -127,7 +127,7 @@ describe('Calculating rotation matrix around a point', () => {
   });
 
   test('rotation matrix for 273.387672 degree rotation, point (3.87, 8.33)', () => {
-    expect(calculateRotationMatrix(273.387672, new Point(3.87, 8.33)))
+    expect(calculateRotationMatrix(273.387672 * PI / 180, new Point(3.87, 8.33)))
       .toStrictEqual([
         -0.9976127757354549,
         -0.06905613433577724,
@@ -139,7 +139,7 @@ describe('Calculating rotation matrix around a point', () => {
   });
 
   test('rotation matrix for 273.387672 degree rotation, point (-3.87, 8.33)', () => {
-    expect(calculateRotationMatrix(273.387672, new Point(-3.87, 8.33)))
+    expect(calculateRotationMatrix(273.387672 * PI / 180, new Point(-3.87, 8.33)))
       .toStrictEqual([
        -0.9976127757354549,
        -0.06905613433577724,
@@ -150,7 +150,7 @@ describe('Calculating rotation matrix around a point', () => {
       ]);
   });
   test('rotation matrix for 273.387672 degree rotation, point (3.87, -8.33)', () => {
-    expect(calculateRotationMatrix(273.387672, new Point(3.87, -8.33)))
+    expect(calculateRotationMatrix(273.387672 * PI / 180, new Point(3.87, -8.33)))
       .toStrictEqual([
        -0.9976127757354549,
        -0.06905613433577724,
@@ -161,7 +161,7 @@ describe('Calculating rotation matrix around a point', () => {
       ]);
   });
   test('rotation matrix for 273.387672 degree rotation, point (-3.87, -8.33)', () => {
-    expect(calculateRotationMatrix(273.387672, new Point(-3.87, -8.33)))
+    expect(calculateRotationMatrix(273.387672 * PI / 180, new Point(-3.87, -8.33)))
       .toStrictEqual([
        -0.9976127757354549,
        -0.06905613433577724,
@@ -172,7 +172,7 @@ describe('Calculating rotation matrix around a point', () => {
       ]);
   });
   test('rotation matrix for -74 degree rotation, point (5, -5)', () => {
-    expect(calculateRotationMatrix(-74, new Point(5, -5)))
+    expect(calculateRotationMatrix(-74 * PI / 180, new Point(5, -5)))
       .toStrictEqual([
        0.17171734183077755,
        0.9851462604682474,
@@ -184,7 +184,7 @@ describe('Calculating rotation matrix around a point', () => {
 
   });
   test('rotation matrix for -74 degree rotation, point (-5, -5)', () => {
-    expect(calculateRotationMatrix(-74, new Point(5, -5)))
+    expect(calculateRotationMatrix(-74 * PI / 180, new Point(5, -5)))
       .toStrictEqual([
        0.17171734183077755,
        0.9851462604682474,
@@ -195,7 +195,7 @@ describe('Calculating rotation matrix around a point', () => {
       ]);
   });
   test('rotation matrix for -74 degree rotation, point (-5, 5)', () => {
-    expect(calculateRotationMatrix(-74, new Point(5, -5)))
+    expect(calculateRotationMatrix(-74 * PI / 180, new Point(5, -5)))
       .toStrictEqual([
        0.17171734183077755,
        0.9851462604682474,
@@ -206,7 +206,7 @@ describe('Calculating rotation matrix around a point', () => {
       ]);
   });
   test('rotation matrix for -74 degree rotation, point (5, 5)', () => {
-    expect(calculateRotationMatrix(-74, new Point(5, -5)))
+    expect(calculateRotationMatrix(-74 * PI / 180, new Point(5, -5)))
       .toStrictEqual([
        0.17171734183077755,
        0.9851462604682474,
@@ -220,7 +220,7 @@ describe('Calculating rotation matrix around a point', () => {
 
 describe('Applying matrix to point', () => {
   test('a point with a negative rotation', () => {
-    const matrix = calculateRotationMatrix(-74, new Point(5, -7));
+    const matrix = calculateRotationMatrix(-74 * PI / 180, new Point(5, -7));
     const result = applyMatrixToPoint(matrix, new Point(5, -7));
     expect(result.x).toStrictEqual(5);
     expect(result.y).toStrictEqual(-7);
@@ -230,7 +230,7 @@ describe('Applying matrix to point', () => {
     expect(result2.y).toStrictEqual(4.550219693178512);
   });
   test('a point with a positive rotation', () => {
-    const matrix = calculateRotationMatrix(60, new Point(5, 10));
+    const matrix = calculateRotationMatrix(60 * PI / 180, new Point(5, 10));
     const result = applyMatrixToPoint(matrix, new Point(5, 10));
     expect(result.x).toStrictEqual(5);
     expect(result.y).toStrictEqual(10);

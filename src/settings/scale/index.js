@@ -1,0 +1,46 @@
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
+import { Fragment } from 'preact/compat';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import Colors, { colorProp } from './colors';
+import KeyLabels from './key-labels';
+import ScaleTable from './scale-table';
+import ScalaImport from './scala-import';
+
+const Scale = (props) => {
+  const [importing, setImporting] = useState(false);
+
+  const doImport = () => {
+    props.onImport();
+    setImporting(false);
+  };
+  const cancelImport = () => setImporting(false);
+  const startImporting = () => setImporting(true);
+
+  return (
+  <fieldset>
+    <legend>Scale</legend>
+      {importing
+       ?(<ScalaImport {...props}
+                      onImport={doImport}
+                      onCancel={cancelImport}/>)
+       :(<>
+          <ScaleTable {...props} />
+           <button type="button" onClick={startImporting}>
+            Import
+          </button>
+        </>)
+      }
+    <KeyLabels {...props}/>
+    <Colors {...props}/>
+  </fieldset>
+  );
+};
+
+Scale.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired
+};
+
+export default Scale;
