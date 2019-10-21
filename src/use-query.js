@@ -34,12 +34,13 @@ export class ExtractArray {
     }
   }
   insert(query, key, values) {
-    values.map(v).forEach(v => query.append(key, v));
+    values.map(this.to).forEach(v => query.append(key, v));
   }
 }
 
 export const ExtractString = new Extract(x => x, x => x);
 export const ExtractStringArray = new ExtractArray(x => x, x => x);
+export const ExtractJoinedString = new Extract(x => x.split("-"), x => x.join("-"));
 export const ExtractFloat = new Extract(x => Number.parseFloat(x), x => x.toString());
 export const ExtractFloatArray = new Extract(x => Number.parseFloat(x), x => x.toString());
 export const ExtractInt = new Extract(x => Number.parseInt(x), x => x.toString());

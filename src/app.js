@@ -12,7 +12,7 @@ import keyCodeToCoords from './settings/keycodes';
 //import "normalize.css";
 // import "skeleton-css/css/skeleton.css";
 import "./terpstra-style.css";
-import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractStringArray } from './use-query';
+import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractJoinedString } from './use-query';
 import LoadingIcon from './hex.svg';
 
 import Settings from './settings';
@@ -58,8 +58,9 @@ const normalize = (settings) => {
 
 export const App = () => {
   const [loading, setLoading] = useState(0);
-  const [settings, setSettings] = useState(default_settings);
   /*
+  const [settings, setSettings] = useState(default_settings);
+  */
   const [settings, setSettings] = useQuery({
     // Output
     output: ExtractString,
@@ -67,25 +68,24 @@ export const App = () => {
     fundamental: ExtractFloat,
     midi: ExtractString,
     midi_channel: ExtractInt,
+
     // Layout
     rSteps: ExtractInt,
     urSteps: ExtractInt,
     hexSize: ExtractInt,
     rotation: ExtractInt,
     // Scale
-    scale: ExtractStringArray,
-    no_labels: ExtractBool,
-    number_or_name: ExtractBool,
+    scale: ExtractJoinedString,
+    key_labels: ExtractString,
     // TODO consistent snake case
     equivSteps: ExtractInt,
     // TODO rename to note_names
-    names: ExtractStringArray,
+    names: ExtractJoinedString,
     spectrum_colors: ExtractBool,
     fundamental_color: ExtractString,
-    note_colors: ExtractStringArray
-    //
+    note_colors: ExtractJoinedString
   }, default_settings);
-  */
+
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
   const [midi, setMidi] = useState(null);

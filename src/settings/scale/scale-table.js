@@ -2,7 +2,7 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 
 const ScaleTable = (props) => {
-  const scale = [...props.settings.scale];
+  const scale = [...(props.settings.scale || [])];
   const equiv_interval = scale.length ? scale.pop() : 0;
   scale.unshift(0);
 
@@ -10,7 +10,7 @@ const ScaleTable = (props) => {
   if (props.settings.key_labels === "enumerate") {
     names = [...Array(scale.length).keys()];
   } else if (props.settings.key_labels === "names") {
-    names = props.settings.names;
+    names = props.settings.names || [];
   } else {
     names = Array(scale.length).fill("");
   }
@@ -19,24 +19,24 @@ const ScaleTable = (props) => {
   if (props.settings.spectrum_colors) {
     colors = Array(scale.length).fill(props.settings.fundamental_color);
   } else {
-    colors = props.settings.note_colors;
+    colors = props.settings.note_colors || [];
   }
   const rows = scale.map((x, i) => [x, names[i], colors[i]]);
 
   const scaleChange = e => {
-    const next = [...props.settings.scale];
+    const next = [... (props.settings.scale || [])];
     next[parseInt(e.target.name.replace(/scale/, ""))] = e.target.value;
     props.onChange("scale", next);
   };
 
   const colorChange = e => {
-    const next = [...props.settings.note_colors];
+    const next = [...(props.settings.note_colors || [])];
     next[parseInt(e.target.name.replace(/color/, ""))] = e.target.value;
     props.onChange("note_colors", next);
   };
 
   const nameChange = e => {
-    const next = [...props.settings.names];
+    const next = [...(props.settings.names || [])];
     next[parseInt(e.target.name.replace(/name/, ""))] = e.target.value;
     props.onChange("names", next);
   };

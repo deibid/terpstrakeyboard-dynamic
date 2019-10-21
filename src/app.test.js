@@ -11,9 +11,9 @@ jest.mock('./sample_synth');
 import {create_sample_synth} from './sample_synth';
 
 describe("The application", () => {
-
+  const synth_promise = Promise.resolve({});
   beforeEach(() => {
-    create_sample_synth.mockReturnValue(Promise.resolve({}));
+    create_sample_synth.mockReturnValue(synth_promise);
     moxios.install();
   });
 
@@ -26,9 +26,11 @@ describe("The application", () => {
         const c = shallow(<App/>);
         expect(c.prop("className")).toBe("show");
       });
-      it.skip("should mark the keyboard inactive", () => {
+      it("should mark the keyboard inactive", () => {
         const c = shallow(<App/>);
-        expect(c.find(Keyboard).props("active")).toBe(false);
+        return synth_promise.then(() => {
+          expect(c.find(Keyboard).prop("active")).toBe(false);
+        });
       });
     });
     describe("the settings are inactive", () => {
@@ -44,7 +46,7 @@ describe("The application", () => {
       const c = shallow(<App/>);
       const synth = Promise.resolve({});
       global.navigator.requestMIDIAccess = () => synth;
-      create_sample_synth.mockReturnValue(Promise.resolve({}));
+      create_sample_synth.mockReturnValue(synth);
       return synth.then(() => {
         expect(c.exists(Loading)).toBe(false);
       });
