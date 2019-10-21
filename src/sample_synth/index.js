@@ -2,13 +2,9 @@ import axios from 'axios';
 
 // Three concepts:
 // Coordinates -> Scale degree -> Pitch/midi
-
-
 export const create_sample_synth = async (fileName, fundamental) => {
   try {
     const sampleFadeout = findFadeout(fileName);
-    // Fix up for prefixing
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioContext = new AudioContext();
     const s110 = await loadSample(audioContext, fileName, "110");
     const s220 = await loadSample(audioContext, fileName, "220");
@@ -25,9 +21,8 @@ export const create_sample_synth = async (fileName, fundamental) => {
     };
   } catch (e) {
     console.error(e);
-    alert('Web Audio API is not supported in this browser');
   }
-}
+};
 
 const loadSample = async (audioContext, name, freq) => {
   const file = await axios.get(`sounds/${name}${freq}.mp3`, {responseType: "arraybuffer"});

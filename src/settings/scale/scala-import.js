@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import PropTypes from 'prop-types';
 
 const ScalaImport = (props) => (

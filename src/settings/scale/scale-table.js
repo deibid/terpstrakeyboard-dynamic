@@ -21,7 +21,7 @@ const ScaleTable = (props) => {
   } else {
     colors = props.settings.note_colors;
   }
-  const rows = _.zip(scale, names, colors);
+  const rows = scale.map((x, i) => [x, names[i], colors[i]]);
 
   const scaleChange = e => {
     const next = [...props.settings.scale];

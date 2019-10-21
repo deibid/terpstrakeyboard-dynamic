@@ -39,8 +39,7 @@ const Scale = (props) => {
 };
 
 Scale.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  settings: PropTypes.object.isRequired
+  onImport: PropTypes.func.isRequired,
 };
 
 export default Scale;

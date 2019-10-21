@@ -3,7 +3,7 @@ import { Fragment } from 'preact/compat';
 import PropTypes from 'prop-types';
 
 const Presets = (props) => (
-  <select onChange={props.onChange} >
+  <select onChange={props.onChange} name="presets">
     <option>Choose Preset</option>
     {props.presets.map(group => (
       <optgroup label={group.name}>
