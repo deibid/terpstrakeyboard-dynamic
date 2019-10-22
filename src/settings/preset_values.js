@@ -14,30 +14,9 @@ import scale_43_ji_11l_partch from 'scales/43-JI-11L-Partch.scl';
 import scale_12_stretched_inharmonic6_harmonic7 from 'scales/12-Stretched_inharmonic6=harmonic7.scl';
 import scale_wmri_in7_har6 from 'scales/WMRI-in7-har6-.scl';
 
-const scale_12_ed2_names = ["C", "D♭/C♯", "D", "E♭/D♯", "E", "F", "G♭/F♯", "G", "A♭/G♯", "A", "B♭/A♯", "B"]
+import { parseScale } from './scale/parse-scale';
 
-// TODO this ignores valid lines that do not contain a slash or period.
-// This was done to skip the first line which contains the number of steps
-
-// TODO for initial parse, keep as string so that fractions are properly represented in edit view.
-export const parseScale = (scale) => {
-  var result = [];
-  var scaleLines = scale.split('\n');
-  for (let line of scaleLines) {
-    if (line.match(/^[1234567890.\s/]+$/) && !(line.match(/^\s+$/))) {
-      if (line.match(/\//)) {
-        // ratio
-        var nd = line.split('/');
-        var ratio = 1200 * Math.log(parseInt(nd[0]) / parseInt(nd[1])) / Math.log(2);
-        result.push(ratio);
-      } else if (line.match(/\./)) {
-        // cents
-        result.push(parseFloat(line));
-      }
-    }
-  };
-  return result;
-};
+const scale_12_ed2_names = ["C", "D♭/C♯", "D", "E♭/D♯", "E", "F", "G♭/F♯", "G", "A♭/G♯", "A", "B♭/A♯", "B"];
 
 export const presets = [
   {
