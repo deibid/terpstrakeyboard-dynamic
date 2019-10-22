@@ -5,19 +5,18 @@ describe("Parsing Scala files", () => {
     const file = `! meanquar.scl
 ! Comments
 1/4-comma meantone scale. Pietro Aaron's temperament (1523)
- 12
+ 11
 !
  76.04900
  193.15686
  310.26471
- 5/4
+	5/4
+6
  503.42157
- 579.47057
+ 579.
  696.57843
- 25/16
- 889.73529
- 1006.84314
- 1082.89214
+25/16
+ -1082.89214
  	2/1`;
     const parsed = parseScale(file);
     it("should extract the description", () => {
@@ -27,7 +26,7 @@ describe("Parsing Scala files", () => {
       expect(parsed.filename).toBe("meanquar.scl");
     });
     it("should extract the number of steps", () => {
-      expect(parsed.equivSteps).toBe(12);
+      expect(parsed.equivSteps).toBe(11);
     });
     it("should extract the pitches.", () => {
       expect (parsed.scale).toStrictEqual([
@@ -35,13 +34,12 @@ describe("Parsing Scala files", () => {
         "193.15686",
         "310.26471",
         "5/4",
+        "6",
         "503.42157",
-        "579.47057",
+        "579.",
         "696.57843",
         "25/16",
-        "889.73529",
-        "1006.84314",
-        "1082.89214",
+        "-1082.89214",
  	    "2/1"]);
     });
     it("should have no parse error messages", () => {
@@ -54,9 +52,9 @@ describe("Parsing Scala files", () => {
 1/4-comma meantone scale. Pietro Aaron's temperament (1523)
  5
 !
- 76.04900 Eb D# #AB3456
+76.04900 Eb D# #AB3456
  5/4 F# #123456
- 579.47057 #deF344
+	579.47057 #deF344
  1006.84314
  	2/1 D`;
     const parsed = parseScale(file);
@@ -87,6 +85,61 @@ describe("Parsing Scala files", () => {
     });
     it("should have no parse error messages", () => {
       expect(parsed.errors).toHaveLength(0);
+    });
+  });
+  describe("Parsing invalid files", () => {
+    const file = `! meanquar.scl
+1/4-comma meantone scale. Pietro Aaron's temperament (1523)
+ 6
+Extra
+!
+ 76.04900#AB3456
+ 5/4/
+-5/4
+ 579.4.7057
+ 1200.0
+ 	2/1 D`;
+    const parsed = parseScale(file);
+    it("should generate an error when the number of pitches does not match.", () => {
+      const msg = parsed.errors.find(i => i.line === 11);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("6 pitches specified, but 2 provided");
+    });
+    it("should generate an error when a ratio is negative.", () => {
+      const msg = parsed.errors.find(i => i.line === 7);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("Unexpected token.");
+      expect(value).toBe("-5/4");
+    });
+    it("should generate an error when a ratio has more than one slash.", () => {
+      const msg = parsed.errors.find(i => i.line === 6);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("Unexpected token.");
+      expect(value).toBe(" 5/4/");
+    });
+    it("should generate an error when a cent has more than one dot", () => {
+      const msg = parsed.errors.find(i => i.line === 8);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("Unexpected token.");
+      expect(value).toBe(" 579.4.7057");
+    });
+    it("should generate an error when there is no space after a pitch before extra text.", () => {
+      const msg = parsed.errors.find(i => i.line === 5);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("Unexpected token.");
+      expect(value).toBe(" 76.04900#AB3456");
+    });
+    it("should generate an error when there is a non-pitch value", () => {
+      const msg = parsed.errors.find(i => i.line === 3);
+      expect(msg).toBeDefined();
+      const { line, value, error } = msg;
+      expect(error).toBe("Unexpected token.");
+      expect(value).toBe("Extra");
     });
   });
   describe("converting a Scala pitch string to a cent value", () => {

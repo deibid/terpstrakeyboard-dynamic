@@ -52,22 +52,22 @@ export const parseScale2 = (scala) => {
     } else if (!out.equivSteps && line.match(/^\s*[0-9]+\s*$/)) {
       // The first number is number of lines in the file.
       out.equivSteps = parseInt(line.trim());
-    } else if (match = line.match(/^\s*([0-9\.\/]+)\s*$/)) {
+    } else if (match = line.match(/^\s*(-?[0-9]+\.[0-9]*|[0-9]+\/[0-9]*|[0-9]+)\s*$/)) {
       // only a pitch value
       out.scale.push(match[1]);
       out.labels.push(null);
       out.colors.push(null);
-    } else if (match = line.match(/^\s*([0-9\.\/]+)\s+(#[a-fA-F0-9]{6})$/)) {
+    } else if (match = line.match(/^\s*(-?[0-9]+\.[0-9]*|[0-9]+\/[0-9]*|[0-9]+)\s+(#[a-fA-F0-9]{6})$/)) {
       // pitch value with only a color
       out.scale.push(match[1]);
       out.labels.push(null);
       out.colors.push(match[2].toLowerCase());
-    } else if (match = line.match(/^\s*([0-9\.\/]+)\s+(.*)\s+(#[a-fA-F0-9]{6})$/)) {
+    } else if (match = line.match(/^\s*(-?[0-9]+\.[0-9]*|[0-9]+\/[0-9]*|[0-9]+)\s+(.*)\s+(#[a-fA-F0-9]{6})$/)) {
       // pitch value with a label and a color
       out.scale.push(match[1]);
       out.labels.push(match[2].trim());
       out.colors.push(match[3].toLowerCase());
-    } else if (match = line.match(/^\s*([0-9\.\/]+)\s+(.*)\s*$/)) {
+    } else if (match = line.match(/^\s*(-?[0-9]+\.[0-9]*|[0-9]+\/[0-9]*|[0-9]+)\s+(.*)\s*$/)) {
       // pitch value with only a label;
       const label = typeof match[2] === 'undefined' ? match[2] : null;
       const color = typeof match[3] === 'undefined' ? match[3] : null;
