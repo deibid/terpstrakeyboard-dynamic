@@ -1,4 +1,4 @@
-import { scalaToCents, parseScale2 as parseScale } from './parse-scale';
+import { scalaToCents, parseScale } from './parse-scale';
 
 describe("Parsing Scala files", () => {
   describe("parsing a valid file", () => {

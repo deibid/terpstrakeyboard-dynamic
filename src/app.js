@@ -3,7 +3,7 @@ import { useState, useEffect } from 'preact/hooks';
 import "regenerator-runtime/runtime";
 import Keyboard from './keyboard';
 import {presets, default_settings } from './settings/preset_values';
-import { parseScale } from './settings/scale/parse-scale.js';
+import { scalaToCents, parseScale } from './settings/scale/parse-scale.js';
 import {create_sample_synth, instruments} from './sample_synth';
 import {create_midi_synth} from './midi_synth';
 import keyCodeToCoords from './settings/keycodes';
@@ -38,7 +38,7 @@ const findPreset = (preset) => {
 // TODO eliminate the need for this.
 const normalize = (settings) => {
   const fundamental_color = (settings.fundamental_color || "").replace(/#/, '');
-  const note_colors = settings.note_colors.map(c => c.replace(/#/, ''));
+  const note_colors = settings.note_colors.map(c => c ? c.replace(/#/, '') : "000000");
   const rotation = settings.rotation * Math.PI / 180.0; // convert to radians
   const result = {...settings, fundamental_color, keyCodeToCoords, note_colors, rotation};
   if (settings.key_labels === "enumerate") {
@@ -48,7 +48,7 @@ const normalize = (settings) => {
   }
 
   if (settings.scale) {
-    const scale = [...settings.scale];
+    const scale = settings.scale.map(i => scalaToCents(i));
     const equivInterval = scale.pop();
     scale.unshift(0);
     result["scale"] = scale;
@@ -142,7 +142,8 @@ export const App = () => {
   const onImport = () => {
     setSettings(s => {
       if (s.scale_import) {
-        return {...s, scale: parseScale(s.scale_import)};
+        const { equivSteps, scale, labels, colors } = parseScale(s.scale_import);
+        return {...s, equivSteps, scale, note_colors: colors, names: labels };
       } else {
         return s;
       }
