@@ -3,6 +3,7 @@ import Scale from './scale';
 import Layout from './layout';
 import Output from './output';
 import Presets from './presets';
+import './settings.css';
 
 const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, instruments}) => (
   <form>

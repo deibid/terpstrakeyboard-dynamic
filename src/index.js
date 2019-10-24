@@ -1,6 +1,5 @@
 import { h, render } from 'preact';
 import "regenerator-runtime/runtime";
-import "./terpstra-style.css";
 import {options} from 'preact';
 import PropTypes from 'prop-types';
 

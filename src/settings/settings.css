@@ -3,34 +3,25 @@ textarea {
     -webkit-overflow-scrolling: touch;
 }
 
-.u-half-width {
-  width: 47.5%;
-  box-sizing: border-box;
-  float: left;
+select[name="presets"] {
+    width: 100%;
 }
 
-.rpad{
-    margin-right: 5%;
+label {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.button, button, input[type="submit"], input[type="reset"], input[type="button"]
-{
-    max-width: 100%;
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
-@media screen and (max-width: 350px) {
-    .button, button, input[type="submit"], input[type="reset"], input[type="button"]
-    {
-        padding: 0 10px;
-    }
+table td, table th, table {
+    padding: 0;
 }
 
-@media screen and (max-width: 550px) {
-    input[type="number"] {
-        width: 100%;
-    }
-    select[name="instrument"] {
-        width: 100%;
-    }
-
+table input[type="text"] {
+    width: 95%;
 }

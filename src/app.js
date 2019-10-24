@@ -7,19 +7,15 @@ import { scalaToCents, parseScale } from './settings/scale/parse-scale.js';
 import {create_sample_synth, instruments} from './sample_synth';
 import {create_midi_synth} from './midi_synth';
 import keyCodeToCoords from './settings/keycodes';
-// import "./normalize.css";
-//import "./skeleton.css";
-// These can be pulled from npm, but have been modified.
-//import "normalize.css";
-// import "skeleton-css/css/skeleton.css";
-import "./terpstra-style.css";
 import { useQuery, Extract, ExtractInt, ExtractString, ExtractFloat, ExtractBool, ExtractJoinedString } from './use-query';
-import LoadingIcon from './hex.svg';
-
 import Settings from './settings';
 import Blurb from './blurb';
-
 import PropTypes from 'prop-types';
+
+import "normalize.css";
+import "./terpstra-style.css";
+import LoadingIcon from './hex.svg';
+import './loader.css';
 
 export const Loading = () => <LoadingIcon/>;
 
@@ -169,14 +165,12 @@ export const App = () => {
 
       {loading > 0 && <Loading/>}
       <button id="sidebar-button" onClick={() => setActive(s => !s)}>
-        {active ? "Open" : "Close"}
+        <div>&gt;</div>
       </button>
 	  <nav id="sidebar">
-        <header>
-          <h2>
-            <a href="http://terpstrakeyboard.com/">Terpstra Keyboard</a>
-          </h2>
-        </header>
+        <h1>
+          <a href="http:terpstrakeyboard.com/">Terpstra Keyboard</a>
+        </h1>
         <Settings presetChanged={presetChanged}
                     presets={presets}
                     onChange={onChange}
