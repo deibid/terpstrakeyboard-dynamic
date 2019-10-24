@@ -87,7 +87,7 @@ const ScaleTable = (props) => {
                    value={equiv_interval} onChange={scaleChange}/>
           </td>
           <td><em>{names[0]}</em></td>
-          <td><em>{colors[0]}</em></td>
+          <td><input type="color" disabled={true} value={colors[0]}/></td>
         </tr>
       </tbody>
     </table>

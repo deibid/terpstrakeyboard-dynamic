@@ -17,8 +17,9 @@ body {
 
 #sidebar-button {
     position: fixed;
-    border: 0;
+    border: 1px solid #777;
     z-index: 11;
+    background-color: #dddddd;
 }
 
 /* Sidebar is attached to top and fills viewport for small screens */
@@ -35,6 +36,8 @@ body {
         left: 50vw;
         transform: translate(-50%, 0);
         transition: width 0.3s ease-in-out;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
     .hide #sidebar {
@@ -67,7 +70,7 @@ body {
     #sidebar {
         height: 100vh;
         max-width: 30em;
-        padding-left: 5em;
+        padding-left: 5.5em;
     }
 
     #sidebar-button {
@@ -76,6 +79,8 @@ body {
         left: 0;
         transform: translate(0, -50%);
         transition: height 0.3s ease-in-out;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
     .hide #sidebar {
