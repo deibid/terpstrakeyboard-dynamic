@@ -55,28 +55,39 @@ const ScaleTable = (props) => {
           <td><em>0</em></td>
           <td>
             <input type="text" disabled={editable_labels}
-                   name="name0" value={names[0]} onChange={nameChange}/>
+                   name="name0" value={names[0]} onChange={nameChange}
+                   aria-label="pitch name 0"
+            />
           </td>
           <td>
             <input type="color" disabled={editable_colors}
-                   name="color0" value={colors[0]} onChange={colorChange}/>
+                   name="color0" value={colors[0]} onChange={colorChange}
+                   aria-label="pitch color 0"
+            />
           </td>
         </tr>
         {rows.slice(1).map(([freq, name, color], i) => (
           <tr>
             <td>
               <input type="text" name={`scale${i}`}
-                     value={freq} onChange={scaleChange}/>
+                     value={freq} onChange={scaleChange}
+                     aria-label={`pitch value ${i}`}
+              />
             </td>
             <td>
               <input type="text" disabled={editable_labels}
                      name={`name${i+1}`} value={name}
-                     onChange={nameChange}/>
+                     onChange={nameChange}
+                     aria-label={`pitch name ${i}`}
+              />
+
             </td>
             <td>
               <input type="color" disabled={editable_colors}
                      name={`color${i+1}`} value={color}
-                     onChange={colorChange}/>
+                     onChange={colorChange}
+                     aria-label={`pitch color ${i}`}
+              />
             </td>
           </tr>
         ))}
@@ -84,10 +95,12 @@ const ScaleTable = (props) => {
           <td>
             <input type="text"
                    name={`scale${scale.length - 1}`}
-                   value={equiv_interval} onChange={scaleChange}/>
+                   value={equiv_interval} onChange={scaleChange}
+                   aria-label={`pitch ${i}`}
+              />
           </td>
           <td><em>{names[0]}</em></td>
-          <td><input type="color" disabled={true} value={colors[0]}/></td>
+          <td><input type="color" disabled={true} value={colors[0]} aria-label={`pitch color 0`}/></td>
         </tr>
       </tbody>
     </table>
