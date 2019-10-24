@@ -153,11 +153,13 @@ describe("The scale table", () => {
       expect(first.at(1).prop("name")).toBe("color0");
       expect(first.at(1).prop("value")).toBe(scale_colors[0]);
     });
-    it("should render the last item with only the scale input", () => {
+    it("should render the last item with only the scale input and a disabled color", () => {
       const last = c.find('tr').last().find('input');
-      expect(last).toHaveLength(1);
+      expect(last).toHaveLength(2);
       expect(last.at(0).prop("name")).toBe("scale11");
       expect(last.at(0).prop("value")).toBe(scale_values[11]);
+      expect(last.at(1).prop("value")).toBe(scale_colors[0]);
+      expect(last.at(1).prop("disabled")).toBe(true);
     });
     it("should update a value", () => {
       const mockChange = jest.fn();
