@@ -2,6 +2,8 @@
   "background_color": "#c80ced",
   "description": "Virtual Terpstra isomorphic micro-tonal musical keyboard.",
   "display": "fullscreen",
+  "theme_color": "#2973CC",
+  "background_color": "#2973CC",
   "icons": [
     {
       "src": "192.png",
