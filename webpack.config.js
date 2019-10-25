@@ -77,6 +77,10 @@ module.exports = {
     new CopyWebpackPlugin([
       // TODO generate manifest
       {from: "manifest.webmanifest", to: './'},
+      {from: "192.png", to: './'},
+      {from: "256.png", to: './'},
+      {from: "512.png", to: './'},
+      {from: "1024.png", to: './'},
       {from: "sounds", to: './sounds'},
     ]),
     new MiniCssExtractPlugin({
