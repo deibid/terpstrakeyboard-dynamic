@@ -6,13 +6,8 @@
   "background_color": "#2973CC",
   "icons": [
     {
-      "src": "192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "256.png",
-      "sizes": "256x256",
+      "src": "1024.png",
+      "sizes": "1024x1024",
       "type": "image/png"
     },
     {
@@ -21,13 +16,17 @@
       "type": "image/png"
     },
     {
-      "src": "1024.png",
-      "sizes": "1024x1024",
+      "src": "256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "192.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
-
   ],
   "name": "Virtual Terpstra isomorphic micro-tonal musical keyboard",
-  "short_name": "Terpstra Isomorphic Keyboard",
+  "short_name": "Terpstra Keyboard",
   "start_url": "index.html"
 }
