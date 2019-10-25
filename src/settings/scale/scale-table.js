@@ -96,7 +96,7 @@ const ScaleTable = (props) => {
             <input type="text"
                    name={`scale${scale.length - 1}`}
                    value={equiv_interval} onChange={scaleChange}
-                   aria-label={`pitch ${i}`}
+                   aria-label={`pitch ${scale.length - 1}`}
               />
           </td>
           <td><em>{names[0]}</em></td>
