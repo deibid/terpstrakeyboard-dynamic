@@ -1,7 +1,6 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Fragment } from 'preact/compat';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import Colors, { colorProp } from './colors';
 import KeyLabels from './key-labels';
