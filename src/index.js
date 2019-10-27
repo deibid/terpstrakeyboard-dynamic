@@ -21,4 +21,4 @@ if (process.env.NODE_ENV !== "production") {
 
 render(<App />, document.getElementById('application'));
 
-serviceWorker.unregister();
+serviceWorker.register();

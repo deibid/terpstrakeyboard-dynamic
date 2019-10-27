@@ -1,23 +1,25 @@
-.color-primary-0 { color: #2973CC }    /* Main Primary color */
-.color-primary-1 { color: #A8CCF8 }
-.color-primary-2 { color: #5C99E2 }
-.color-primary-3 { color: #0B4A95 }
-.color-primary-4 { color: #052244 }
+/* http://paletton.com/#uid=73C1k0kwi++bu++hX++++DY++qA */
 
-.color-secondary-1-0 { color: #D51CB2 }    /* Main Secondary color (1) */
-.color-secondary-1-1 { color: #F9A2E8 }
-.color-secondary-1-2 { color: #E752CB }
-.color-secondary-1-3 { color: #A40084 }
-.color-secondary-1-4 { color: #4B003D }
+.color-primary-0 { color: #157FFF }	/* Main Primary color blue */
+.color-primary-1 { color: #ABD1FF }
+.color-primary-2 { color: #7CB7FF }
+.color-primary-3 { color: #0057C0 }
+.color-primary-4 { color: #003F8B }
 
-.color-secondary-2-0 { color: #C8F820 }    /* Main Secondary color (2) */
-.color-secondary-2-1 { color: #EAFEA5 }
-.color-secondary-2-2 { color: #D7FB58 }
-.color-secondary-2-3 { color: #A9DA00 }
-.color-secondary-2-4 { color: #4D6400 }
+.color-secondary-1-0 { color: #FF00FF }	/* Main Secondary color (1) pink */
+.color-secondary-1-1 { color: #FFA4FF }
+.color-secondary-1-2 { color: #FF70FF }
+.color-secondary-1-3 { color: #BF00BF }
+.color-secondary-1-4 { color: #8A008A }
 
-.color-complement-0 { color: #FFA921 }    /* Main Complement color */
-.color-complement-1 { color: #FFDCA6 }
-.color-complement-2 { color: #FFBF5A }
-.color-complement-3 { color: #E48C00 }
-.color-complement-4 { color: #684000 }
+.color-secondary-2-0 { color: #D3FF00 }	/* Main Secondary color (2) green */
+.color-secondary-2-1 { color: #EFFFA4 }
+.color-secondary-2-2 { color: #E6FF70 }
+.color-secondary-2-3 { color: #CEF900 }
+.color-secondary-2-4 { color: #A9CD00 }
+
+.color-complement-0 { color:  }	/* Main Complement color orange */
+.color-complement-1 { color:  }
+.color-complement-2 { color:  }
+.color-complement-3 { color:  }
+.color-complement-4 { color:  }

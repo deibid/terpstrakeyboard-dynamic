@@ -17,11 +17,14 @@ body {
 
 #sidebar-button {
     position: fixed;
-    border: 1px solid #777;
     z-index: 11;
-    background-color: #dddddd;
+    background-color: #7cb7ff;
+    border: 1px solid #0057C0;
 }
 
+a {
+    color: #157FFF;
+}
 /* Sidebar is attached to top and fills viewport for small screens */
 @media (max-width: 460px) {
     #sidebar {
@@ -71,6 +74,7 @@ body {
         height: 100vh;
         max-width: 30em;
         padding-left: 5.5em;
+        padding-right: 0.5em;
     }
 
     #sidebar-button {

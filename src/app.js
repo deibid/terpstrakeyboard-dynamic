@@ -17,7 +17,7 @@ import "./terpstra-style.css";
 import LoadingIcon from './hex.svg';
 import './loader.css';
 
-export const Loading = () => <LoadingIcon/>;
+export const Loading = () => <LoadingIcon width="50vw" height="50vh"/>;
 
 const findPreset = (preset) => {
   for (let g of presets) {
