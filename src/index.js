@@ -3,7 +3,6 @@ import "regenerator-runtime/runtime";
 import {options} from 'preact';
 import PropTypes from 'prop-types';
 
-import * as serviceWorker from './serviceWorker';
 import App from './app.js';
 
 if (process.env.NODE_ENV !== "production") {
@@ -21,4 +20,9 @@ if (process.env.NODE_ENV !== "production") {
 
 render(<App />, document.getElementById('application'));
 
-serviceWorker.register();
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
