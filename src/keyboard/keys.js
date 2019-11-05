@@ -17,7 +17,7 @@ class Keys {
       context: canvas.getContext('2d'),
       sustain: false,
       sustainedNotes: [],
-      pressedKeys: [],
+      pressedKeys: new Set(),
       activeHexObjects: [],
       isTouchDown: false,
       isMouseDown: false,
@@ -194,28 +194,31 @@ class Keys {
   }
 
   onKeyDown = (e) => {
-    if (e.keyCode == 32) { // Spacebar
+    e.preventDefault();
+    //console.log("key", e.code, this.settings.keyCodeToCoords[e.code]);
+    if (e.repeat) {
+      return;
+    } else if (e.code == "Space") {
       this.sustainOn();
     } else if (!this.state.isMouseDown && !this.state.isTouchDown
-               && (e.keyCode in this.settings.keyCodeToCoords)
-               && this.state.pressedKeys.indexOf(e.keyCode) == -1) {
-      this.state.pressedKeys.push(e.keyCode);
-      var coords = this.settings.keyCodeToCoords[e.keyCode];
+               && (e.code in this.settings.keyCodeToCoords)
+               && !this.state.pressedKeys.has(e.code)) {
+      this.state.pressedKeys.add(e.code);
+      var coords = this.settings.keyCodeToCoords[e.code];
       var hex = this.hexOn(coords);
       this.state.activeHexObjects.push(hex);
     }
   }
 
   onKeyUp = (e) => {
-    if (e.keyCode == 32) { // Spacebar
+    if (e.code == "Space") {
       this.sustainOff();
     } else if (!this.state.isMouseDown && !this.state.isTouchDown
-               && (e.keyCode in this.settings.keyCodeToCoords)) {
-      var keyIndex = this.state.pressedKeys.indexOf(e.keyCode);
-      if (keyIndex != -1) {
-        this.state.pressedKeys.splice(keyIndex, 1);
-        var coords = this.settings.keyCodeToCoords[e.keyCode];
-        this.hexOff(coords)
+               && (e.code in this.settings.keyCodeToCoords)) {
+      if (this.state.pressedKeys.has(e.code)) {
+        this.state.pressedKeys.delete(e.code);
+        var coords = this.settings.keyCodeToCoords[e.code];
+        this.hexOff(coords);
         var hexIndex = this.state.activeHexObjects.findIndex(function(hex) {
           return coords.equals(hex.coords);
         });
@@ -229,7 +232,7 @@ class Keys {
 
   mouseUp = (e) => {
     this.state.isMouseDown = false;
-    if (this.state.pressedKeys.length != 0 || this.state.isTouchDown) {
+    if (this.state.pressedKeys.size != 0 || this.state.isTouchDown) {
       return;
     }
     this.state.canvas.removeEventListener("mousemove", this.mouseActive);
@@ -241,7 +244,7 @@ class Keys {
   }
 
   mouseDown = (e) => {
-    if (this.state.pressedKeys.length != 0 || this.state.isTouchDown) {
+    if (this.state.pressedKeys.size != 0 || this.state.isTouchDown) {
       return;
     }
     this.state.isMouseDown = true;
@@ -290,7 +293,7 @@ class Keys {
 
   handleTouch = (e) => {
     e.preventDefault();
-    if (this.state.pressedKeys.length != 0 || this.state.isMouseDown) {
+    if (this.state.pressedKeys.size != 0 || this.state.isMouseDown) {
       this.state.isTouchDown = false;
       return;
     }

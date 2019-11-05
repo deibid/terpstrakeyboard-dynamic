@@ -1,54 +1,88 @@
 import Point from '../point';
 
 const keyCodeToCoords = {
-  49 : new Point(-5, -2), // 1
-  50 : new Point(-4, -2), // 2
-  51 : new Point(-3, -2), // 3
-  52 : new Point(-2, -2), // 4
-  53 : new Point(-1, -2), // 5
-  54 : new Point(0, -2), // 6
-  55 : new Point(1, -2), // 7
-  56 : new Point(2, -2), // 8
-  57 : new Point(3, -2), // 9
-  48 : new Point(4, -2), // 0
-  189 : new Point(5, -2), // -
-  187 : new Point(6, -2), // =
+  Escape: new Point(-5, -3),
+  F1: new Point(-4, -3),
+  F2: new Point(-3, -3),
+  F3: new Point(-2, -3),
+  F4: new Point(-1, -3),
+  F5: new Point(0, -3),
+  F6: new Point(1, -3),
+  F7: new Point(2, -3),
+  F8: new Point(3, -3),
+  F9: new Point(4, -3),
+  F10: new Point(5, -3),
+  F11: new Point(6, -3),
+  F12: new Point(7, -3),
+  Delete: new Point(8, -3),
 
-  81 : new Point(-5, -1), // Q
-  87 : new Point(-4, -1), // W
-  69 : new Point(-3, -1), // E
-  82 : new Point(-2, -1), // R
-  84 : new Point(-1, -1), // T
-  89 : new Point(0, -1), // Y
-  85 : new Point(1, -1), // U
-  73 : new Point(2, -1), // I
-  79 : new Point(3, -1), // O
-  80 : new Point(4, -1), // P
-  219 : new Point(5, -1), // [
-  221 : new Point(6, -1), // ]
+  Backquote : new Point(-6, -2),
+  Digit1 : new Point(-5, -2),
+  Digit2 : new Point(-4, -2),
+  Digit3 : new Point(-3, -2),
+  Digit4 : new Point(-2, -2),
+  Digit5 : new Point(-1, -2),
+  Digit6 : new Point(0, -2),
+  Digit7 : new Point(1, -2),
+  Digit8 : new Point(2, -2),
+  Digit9 : new Point(3, -2),
+  Digit0 : new Point(4, -2),
+  Minus : new Point(5, -2),
+  Equal : new Point(6, -2),
+  Backspace : new Point(7, -2),
 
-  65 : new Point(-5, 0), // A
-  83 : new Point(-4, 0), // S
-  68 : new Point(-3, 0), // D
-  70 : new Point(-2, 0), // F
-  71 : new Point(-1, 0), // G
-  72 : new Point(0, 0), // H
-  74 : new Point(1, 0), // J
-  75 : new Point(2, 0), // K
-  76 : new Point(3, 0), // L
-  186 : new Point(4, 0), // ;
-  222 : new Point(5, 0), // '
+  Tab : new Point(-6, -1),
+  KeyQ : new Point(-5, -1),
+  KeyW : new Point(-4, -1),
+  KeyE : new Point(-3, -1),
+  KeyR : new Point(-2, -1),
+  KeyT : new Point(-1, -1),
+  KeyY : new Point(0, -1),
+  KeyU : new Point(1, -1),
+  KeyI : new Point(2, -1),
+  KeyO : new Point(3, -1),
+  KeyP : new Point(4, -1),
+  BracketLeft : new Point(5, -1),
+  BracketRight : new Point(6, -1),
+  Backslash: new Point(7, -1),
 
-  90 : new Point(-5, 1), // Z
-  88 : new Point(-4, 1), // X
-  67 : new Point(-3, 1), // C
-  86 : new Point(-2, 1), // V
-  66 : new Point(-1, 1), // B
-  78 : new Point(0, 1), // N
-  77 : new Point(1, 1), // M
-  188 : new Point(2, 1), // ,
-  190 : new Point(3, 1), // .
-  191 : new Point(4, 1), // /
+  CapsLock : new Point(-6, 0),
+  KeyA : new Point(-5, 0),
+  KeyS : new Point(-4, 0),
+  KeyD : new Point(-3, 0),
+  KeyF : new Point(-2, 0),
+  KeyG : new Point(-1, 0),
+  KeyH : new Point(0, 0),
+  KeyJ : new Point(1, 0),
+  KeyK : new Point(2, 0),
+  KeyL : new Point(3, 0),
+  Semicolon : new Point(4, 0),
+  Quote : new Point(5, 0),
+  Enter : new Point(6, 0),
+
+  ShiftLeft: new Point(-6, 1),
+  KeyZ : new Point(-5, 1),
+  KeyX : new Point(-4, 1),
+  KeyC : new Point(-3, 1),
+  KeyV : new Point(-2, 1),
+  KeyB : new Point(-1, 1),
+  KeyN : new Point(0, 1),
+  KeyM : new Point(1, 1),
+  Comma : new Point(2, 1),
+  Period : new Point(3, 1),
+  Slash : new Point(4, 1),
+  ShiftRight : new Point(5, 1),
+  ArrowUp: new Point(6, 1),
+
+  ControlLeft: new Point(-7, 2),
+  AltLeft: new Point(-6, 2),
+  MetaLeft: new Point(-5, 2),
+  ContextMenu: new Point(1, 2),
+  AltRight: new Point(2, 2),
+  ControlRight: new Point(3, 2),
+  ArrowLeft: new Point(4, 2),
+  ArrowDown: new Point(5, 2),
+  ArrowRight: new Point(6, 2),
 };
 
 export default keyCodeToCoords;

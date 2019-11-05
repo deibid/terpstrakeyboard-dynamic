@@ -63,8 +63,10 @@ export const App = () => {
     output: ExtractString,
     instrument: ExtractString,
     fundamental: ExtractFloat,
+    // todo rename to midi_device
     midi: ExtractString,
     midi_channel: ExtractInt,
+    midi_velocity: ExtractInt,
 
     // Layout
     rSteps: ExtractInt,
