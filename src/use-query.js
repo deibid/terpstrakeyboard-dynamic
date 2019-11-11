@@ -56,7 +56,7 @@ export class ExtractArray {
 
 export const ExtractString = new Extract(x => x, x => x);
 export const ExtractStringArray = new ExtractArray(x => x, x => x);
-export const ExtractJoinedString = new Extract(x => x.split("-"), x => x.join("-"));
+export const ExtractJoinedString = new Extract(x => x.split(","), x => x.join(","));
 export const ExtractFloat = new Extract(x => Number.parseFloat(x), x => x.toString());
 export const ExtractFloatArray = new Extract(x => Number.parseFloat(x), x => x.toString());
 export const ExtractInt = new Extract(x => Number.parseInt(x), x => x.toString());
