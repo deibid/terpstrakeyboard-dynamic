@@ -23,7 +23,7 @@ const findPreset = (preset) => {
   for (let g of presets) {
     for (let p of g.settings) {
       if (p.name === preset) {
-        return p.value;
+        return p;
       }
     }
   }
@@ -59,6 +59,8 @@ export const App = () => {
   const [settings, setSettings] = useState(default_settings);
   */
   const [settings, setSettings] = useQuery({
+    name: ExtractString,
+    description: ExtractString,
     // Output
     output: ExtractString,
     instrument: ExtractString,
