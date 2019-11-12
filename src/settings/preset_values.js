@@ -133,6 +133,42 @@ export const presets = [
       {
         "output": "sample",
         "fundamental": 261.6255653,
+        "rSteps": 5,
+        "urSteps": 13,
+        "hexSize": 50,
+        "rotation": 30.0,
+        "instrument": "rhodes",
+        "key_labels": "names",
+        "equivSteps": 12,
+        "spectrum_colors": false,
+        "scale": scale_12_ed2_parsed,
+        "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on a Wesley layout.",
+        "short_description": "12-ed2 Wesley",
+        "names": scale_12_ed2_names,
+        "note_colors": ["#ffffff", "#bababa", "#8ef4fb", "#bababa", "#ffffff", "#ffffff", "#bababa", "#ffffff", "#49aded", "#ffffff", "#bababa", "#ffffff"],
+        "name": "Wesley"
+      },
+      {
+        "output": "sample",
+        "fundamental": 261.6255653,
+        "rSteps": 3,
+        "urSteps": -1,
+        "hexSize": 50,
+        "rotation": 30.0,
+        "instrument": "rhodes",
+        "key_labels": "names",
+        "equivSteps": 12,
+        "spectrum_colors": false,
+        "scale": scale_12_ed2_parsed,
+        "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on an offset Fernandez layout.",
+        "short_description": "12-ed2 Fernandez",
+        "names": scale_12_ed2_names,
+        "note_colors": ["#ffffff", "#bababa", "#8ef4fb", "#bababa", "#ffffff", "#ffffff", "#bababa", "#ffffff", "#49aded", "#ffffff", "#bababa", "#ffffff"],
+        "name": "Fernandez"
+      },
+      {
+        "output": "sample",
+        "fundamental": 261.6255653,
         "rSteps": 2,
         "urSteps": 7,
         "hexSize": 50,
@@ -148,7 +184,6 @@ export const presets = [
         "note_colors": ["#ffffff", "#ff9f40", "#ffffff", "#ff9f40", "#ffffff", "#ffffff", "#ff9f40", "#ffffff", "#ff9f40", "#ffffff", "#ff9f40", "#ffffff"],
         "name": "Wicki-Hayden"
       },
-
       {
         "output": "sample",
         "fundamental": 261.6255653,
