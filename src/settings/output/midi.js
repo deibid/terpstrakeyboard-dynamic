@@ -3,7 +3,7 @@ import { Fragment } from 'preact/compat';
 import PropTypes from 'prop-types';
 
 const MidiSelect = (props) => (
-  <select name="midi" onChange={(e) => props.onChange(e.target.name, e.target.value)}>
+  <select name="midi_device" onChange={(e) => props.onChange(e.target.name, e.target.value)}>
     <option>Output Device</option>
     {Array.from(props.midi.outputs.values()).map(m => (
       <option value={m.id}>{m.name}</option>
@@ -41,8 +41,7 @@ const Midi = (props) => (
 Midi.propTypes = {
   settings: PropTypes.shape({
     midi_channel: PropTypes.number,
-    // TODO rename to midi_device
-    midi: PropTypes.string,
+    midi_device: PropTypes.string,
     midi_channel: PropTypes.number,
     midi_velocity: PropTypes.number,
   }).isRequired,

@@ -65,8 +65,7 @@ export const App = () => {
     output: ExtractString,
     instrument: ExtractString,
     fundamental: ExtractFloat,
-    // todo rename to midi_device
-    midi: ExtractString,
+    midi_device: ExtractString,
     midi_channel: ExtractInt,
     midi_velocity: ExtractInt,
 
@@ -114,12 +113,12 @@ export const App = () => {
           setSynth(s);
         }); // todo error handling
     }
-    if (settings.output === "midi" && settings.midi &&
+    if (midi && settings.output === "midi" && settings.midi_device &&
         typeof settings.midi_channel === "number" &&
         typeof settings.midi_velocity === "number") {
       setLoading(wait);
 
-      create_midi_synth(midi.outputs.get(settings.midi),
+      create_midi_synth(midi.outputs.get(settings.midi_device),
                         settings.midi_channel,
                         settings.midi_velocity)
         .then(s => {
@@ -128,7 +127,7 @@ export const App = () => {
         }); // todo error handling
     }
   }, [settings.instrument, settings.fundamental,
-      settings.midi, settings.midi_channel,
+      settings.midi_device, settings.midi_channel,
       settings.midi_velocity, settings.output, midi]);
 
   const onChange = (key, value) => {
@@ -151,7 +150,7 @@ export const App = () => {
   };
 
   const valid = s => (
-    ((s.output === "midi" && s.midi && typeof s.midi_channel === "number" && typeof s.midi_velocity === "number") ||
+    ((s.output === "midi" && s.midi_device && typeof s.midi_channel === "number" && typeof s.midi_velocity === "number") ||
      (s.output === "sample" && s.fundamental && s.instrument)) &&
       s.rSteps && s.urSteps &&
       s.hexSize && s.hexSize >= 30 && typeof s.rotation === "number" &&
@@ -159,7 +158,7 @@ export const App = () => {
       (s.no_labels || s.number_or_name && s.names || !s.number_or_name) &&
       ((s.spectrum_colors && s.fundamental_color) || s.note_colors)
   );
-  // TODO better sidebar toggle mechanism than the button and back arrow
+
   return (
     <div className={active ? "hide" : "show"}>
       {loading === 0 && valid(settings) && synth && (
