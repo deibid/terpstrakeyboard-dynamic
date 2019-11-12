@@ -127,7 +127,7 @@ class Keys {
   }
 
   /**************** Event Handlers ****************/
-  deviceMotion = () => {
+  deviceMotion = (e) => {
     this.state.shake.x1 = e.accelerationIncludingGravity.x;
     this.state.shake.y1 = e.accelerationIncludingGravity.y;
     this.state.shake.z1 = e.accelerationIncludingGravity.z;
