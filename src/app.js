@@ -85,6 +85,7 @@ export const App = () => {
     fundamental_color: ExtractString,
     note_colors: ExtractJoinedString
   }, default_settings);
+  const [userPresets, savePreset] = usePreset();
 
   const [active, setActive] = useState(false);
   const [synth, setSynth] = useState(null);
@@ -176,6 +177,8 @@ export const App = () => {
         </h1>
         <Settings presetChanged={presetChanged}
                     presets={presets}
+                    userPresets={userPresets}
+                    savePreset={savePreset}
                     onChange={onChange}
                     onImport={onImport}
                     settings={settings}

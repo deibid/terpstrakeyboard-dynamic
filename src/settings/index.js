@@ -6,13 +6,13 @@ import Presets from './presets';
 import Info from './info';
 import './settings.css';
 
-const Settings = ({presetChanged, presets, settings, onChange, onImport, midi, instruments}) => (
+const Settings = ({presetChanged, presets, userPresets, savePreset, settings, onChange, onImport, midi, instruments}) => (
   <form>
     <label>
       Presets
-      <Presets onChange={presetChanged} presets={presets} />
+      <Presets onChange={presetChanged} presets={presets} userPresets={userPresets}/>
     </label>
-    <Info onChange={onChange} settings={settings} />
+    <Info onChange={onChange} settings={settings} onSave={savePreset}/>
     <Scale onChange={onChange} settings={settings} onImport={onImport}/>
     <Layout onChange={onChange} settings={settings} />
     <Output onChange={onChange} settings={settings}
