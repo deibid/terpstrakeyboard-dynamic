@@ -18,9 +18,9 @@ function MidiHex(coords, steps, midi, channel, velocity) {
 }
 
 MidiHex.prototype.noteOn = function() {
-  this.midi.send([0x90 | this.channel, 69 + this.steps, this.velocity]);
+  this.midi.send([0x90 | this.channel, 72 + this.steps, this.velocity]);
 };
 
 MidiHex.prototype.noteOff = function() {
-  this.midi.send([0x80 | this.channel, 69 + this.steps, this.velocity]);
+  this.midi.send([0x80 | this.channel, 72 + this.steps, this.velocity]);
 };
