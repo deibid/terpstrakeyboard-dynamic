@@ -16,7 +16,7 @@ import scale_wmri_in7_har6 from 'scales/WMRI-in7-har6-.scl';
 
 import { parseScale } from './scale/parse-scale';
 
-const scale_12_ed2_names = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];
+const scale_12_ed2_names = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"];
 const scale_12_ed2_parsed = parseScale(scale_12_ed2).scale;
 export const presets = [
   {
@@ -44,8 +44,8 @@ export const presets = [
         "output": "sample",
         "fundamental": 261.6255653,
         "rSteps": 4,
-        "urSteps": -3,
-        "hexSize": 50,
+        "urSteps": 3,
+        "hexSize": 30,
         "rotation": -30.0,
         "instrument": "harpsichord",
         "key_labels": "names",
@@ -79,10 +79,10 @@ export const presets = [
       {
         "output": "sample",
         "fundamental": 261.6255653,
-        "rSteps": 1,
-        "urSteps": -3,
-        "hexSize": 50,
-        "rotation": 0.0,
+        "rSteps": 4,
+        "urSteps": 1,
+        "hexSize": 30,
+        "rotation": -60.0,
         "instrument": "rhodes",
         "key_labels": "names",
         "equivSteps": 12,
@@ -99,7 +99,7 @@ export const presets = [
         "fundamental": 261.6255653,
         "rSteps": 1,
         "urSteps": -4,
-        "hexSize": 50,
+        "hexSize": 30,
         "rotation": 0.0,
         "instrument": "rhodes",
         "key_labels": "names",
@@ -111,6 +111,24 @@ export const presets = [
         "names": scale_12_ed2_names,
         "note_colors": ["#e3abff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff", "#ffffff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff"],
         "name": "Guitar-like",
+      },
+      {
+        "output": "sample",
+        "fundamental": 261.6255653,
+        "rSteps": 1,
+        "urSteps": -5,
+        "hexSize": 30,
+        "rotation": 0.0,
+        "instrument": "rhodes",
+        "key_labels": "names",
+        "equivSteps": 12,
+        "spectrum_colors": false,
+        "scale": scale_12_ed2_parsed,
+        "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on a guitar-like layout.",
+        "short_description": "12-ed2 Guitar-like",
+        "names": scale_12_ed2_names,
+        "note_colors": ["#e3abff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff", "#ffffff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff", "#cfcfcf", "#ffffff"],
+        "name": "Guitar-like 2",
       },
       {
         "output": "sample",
