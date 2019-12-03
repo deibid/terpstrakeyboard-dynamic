@@ -151,8 +151,8 @@ export const presets = [
       {
         "output": "sample",
         "fundamental": 261.6255653,
-        "rSteps": 5,
-        "urSteps": 13,
+        "rSteps": -5,
+        "urSteps": -12,
         "hexSize": 50,
         "rotation": 30.0,
         "instrument": "rhodes",
@@ -169,8 +169,8 @@ export const presets = [
       {
         "output": "sample",
         "fundamental": 261.6255653,
-        "rSteps": 3,
-        "urSteps": -1,
+        "rSteps": 1,
+        "urSteps": -6,
         "hexSize": 50,
         "rotation": 30.0,
         "instrument": "rhodes",
