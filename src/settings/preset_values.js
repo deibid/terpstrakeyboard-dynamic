@@ -44,7 +44,7 @@ export const presets = [
         "output": "sample",
         "fundamental": 261.6255653,
         "rSteps": 4,
-        "urSteps": 3,
+        "urSteps": -3,
         "hexSize": 30,
         "rotation": -30.0,
         "instrument": "harpsichord",
