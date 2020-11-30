@@ -13,6 +13,7 @@ import scale_41_ed2 from 'scales/41-ed2.scl';
 import scale_43_ji_11l_partch from 'scales/43-JI-11L-Partch.scl';
 import scale_12_stretched_inharmonic6_harmonic7 from 'scales/12-Stretched_inharmonic6=harmonic7.scl';
 import scale_wmri_in7_har6 from 'scales/WMRI-in7-har6-.scl';
+import scale_david from 'scales/David.scl';
 
 import { parseScale } from './scale/parse-scale';
 
@@ -59,22 +60,22 @@ export const presets = [
         "name": "Harmonic Table / Sonome / Tonnetz / 5-L Lattice / Matrix Model",
       },
       {
-        "output": "sample",
-        "fundamental": 261.6255653,
-        "rSteps": 3,
-        "urSteps": -1,
-        "hexSize": 50,
-        "rotation": 30.0,
-        "instrument": "rhodes",
-        "key_labels": "names",
-        "equivSteps": 12,
-        "spectrum_colors": false,
+        "output": "sample", //don't change
+        "fundamental": 261.6255653, //don't change
+        "rSteps": 1, // right facing steps (layout)
+        "urSteps": 1, // upright facing steps (layout)
+        "hexSize": 50, //layout
+        "rotation": 30.0, //layout
+        "instrument": "rhodes", //sample to lay
+        "key_labels": "names", //setting to show on the keys
+        "equivSteps": 12, //amount of values in the scale. count the ones on the individual .scl files
+        "spectrum_colors": false, //layout
         "scale": scale_12_ed2_parsed,
-        "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on Gerhard layout.",
-        "short_description": "12-ed2 Gerhard",
+        "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on Gerhard layout.", //layout
+        "short_description": "12-ed2 Gerhard", //layout
         "names": scale_12_ed2_names,
-        "note_colors": ["#ffffff", "#bababa", "#8ef4fb", "#bababa", "#ffffff", "#ffffff", "#bababa", "#ffffff", "#49aded", "#ffffff", "#bababa", "#ffffff"],
-        "name": "Gerhard"
+        "note_colors": ["#ffffff", "#bababa", "#8ef4fb", "#bababa", "#ffffff", "#ffffff", "#bababa", "#ffffff", "#49aded", "#ffffff", "#bababa", "#ffffff"], //layout
+        "name": "Gerhard" //layout. Name. Necessary
       },
       {
         "output": "sample",
@@ -218,7 +219,7 @@ export const presets = [
         "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on a (hexagonal) tilted Chromatic Button System Type-B used on some button accordions.",
         "short_description": "12-ed2 B-System Chromatic Button",
         "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
-        "name":"B-System Chromatic Button"
+        "name": "B-System Chromatic Button"
       },
       {
         "output": "sample",
@@ -236,7 +237,7 @@ export const presets = [
         "description": "12-tone equal tempered scale consisting of 12 sonically equal divisions per frequency halving/doubling, mapped on a (hexagonal) tilted Chromatic Button System Type-C used on some button accordions.",
         "short_description": "12-ed2 C-System Chromatic Button",
         "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
-        "name":"C-System Chromatic Button"
+        "name": "C-System Chromatic Button"
       },
     ]
   },
@@ -257,7 +258,7 @@ export const presets = [
         "scale": parseScale(scale_7_ji_rast_maqam).scale,
         "names": ["1/1", "9/8", "27/22", "4/3", "3/2", "27/16", "81/44"],
         "note_colors": ["#ffffff", "#ffc37d", "#ff9fb7", "#f7ffaf", "#f7ffaf", "#ffc37d", "#ff9fb7"],
-        "name":  "7-JI Rast Maqam / Eight Echos — Bosanquet / Wilson / Terpstra"
+        "name": "7-JI Rast Maqam / Eight Echos — Bosanquet / Wilson / Terpstra"
       },
 
       {
@@ -276,7 +277,7 @@ export const presets = [
         "short_description": "12-JI-7L Jankó / 6-6/Balanced/Symmetric/Bilinear/Uniform Keyboard / ~Halberstadt",
         "names": ["1/1", "16/15", "9/8", "6/5", "5/4", "4/3", "7/5", "3/2", "8/5", "5/3", "7/4", "15/8"],
         "note_colors": ["#55d455", "#55f4aa", "#55ffff", "#55b4ff", "#5555ea", "#aa55ff", "#ff55ff", "#ff55aa", "#f45555", "#ffaa55", "#ffff55", "#aaf455"],
-        "name":  "12-JI-7L Jankó / 6-6/Balanced/Symmetric/Bilinear/Uniform"
+        "name": "12-JI-7L Jankó / 6-6/Balanced/Symmetric/Bilinear/Uniform"
       },
 
       {
@@ -317,7 +318,7 @@ export const presets = [
         "short_description": "17-JI-11L-Wilson Bosanquet / Wilson / Terpstra",
         "names": ["R", "22/21", "11/10", "9/8", "7/6", "11/9", "5/4", "4/3", "11/8", "22/15", "3/2", "11/7", "44/27", "5/3", "7/4", "11/6", "15/8"],
         "note_colors": ["#8fc7ef", "#f7ffaf", "#ffc37d", "#8fc7ef", "#f7ffaf", "#ffc37d", "#8fc7ef", "#8fc7ef", "#ffc37d", "#ffc37d", "#8fc7ef", "#f7ffaf", "#ffc37d", "#8fc7ef", "#f7ffaf", "#ffc37d", "#8fc7ef"],
-        "name":  "17-JI-11L-Wilson Bosanquet / Wilson / Terpstra"
+        "name": "17-JI-11L-Wilson Bosanquet / Wilson / Terpstra"
       },
 
       {
@@ -336,7 +337,7 @@ export const presets = [
         "short_description": "22-JI-5L-Indian Bosanquet / Wilson / Terpstra",
         "names": ["Sa", "ReL-", "ReL+", "Re-", "Re", "GaL", "Gab", "Ga", "Ga+", "Ma", "Ma+", "MaL-", "MaL+", "Pa", "DhaL", "Dhab", "Dha", "Dha+", "NiL+", "Nib", "Ni", "Ni+"],
         "note_colors": ["#80df80", "#80cfff", "#ffbfff", "#ffcf80", "#80df80", "#80cfff", "#ffbfff", "#80df80", "#ffcf80", "#80df80", "#ffcf80", "#80cfff", "#ffbfff", "#80df80", "#80cfff", "#ffbfff", "#ffcf80", "#80df80", "#80cfff", "#ffbfff", "#80df80", "#ffcf80"],
-        "name":  "22-JI-5L-Indian Bosanquet / Wilson / Terpstra"
+        "name": "22-JI-5L-Indian Bosanquet / Wilson / Terpstra"
       },
 
       {
@@ -352,14 +353,14 @@ export const presets = [
         "key_labels": "names",
         "scale": parseScale(scale_31_ji_7l_fokker).scale,
         "description": "31-tone Just Intonation 7-Limit scale by Adriaan Fokker, consisting of 31 rational divisions per frequency halving/doubling with sonic distances derived from the harmonic series up to a prime limit of 7, mapped on a Bosanquet / Wilson / Terpstra layout.",
-        "short_description":"31-JI-7L-Fokker Bosanquet / Wilson / Terpstra",
+        "short_description": "31-JI-7L-Fokker Bosanquet / Wilson / Terpstra",
         "names": ["1/1", "64/63", "135/128", "15/14", "35/32", "9/8", "8/7", "7/6", "135/112", "315/256", "5/4", "9/7", "21/16", "4/3", "175/128", "45/32", "10/7", "35/24", "3/2", "32/21", "14/9", "45/28", "105/64", "5/3", "12/7", "7/4", "16/9", "945/512", "15/8", "40/21", "63/32"],
         "note_colors": ["#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#bbaa93", "#cfcfcf", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#bbaa93", "#cfcfcf", "#ffffff"],
-        "name":  "31-JI-7L-Fokker Bosanquet / Wilson / Terpstra"
+        "name": "31-JI-7L-Fokker Bosanquet / Wilson / Terpstra"
       },
 
       {
-        "name":  "43-JI-11L-Partch Bosanquet / Wilson / Terpstra",
+        "name": "43-JI-11L-Partch Bosanquet / Wilson / Terpstra",
         "fundamental": 260.74074074,
         "rSteps": 7,
         "urSteps": 3,
@@ -376,7 +377,7 @@ export const presets = [
         "names": ["1/1", "81/80", "33/32", "21/20", "16/15", "12/11", "11/10", "10/9", "9/8", "8/7", "7/6", "32/27", "6/5", "11/9", "5/4", "14/11", "9/7", "21/16", "4/3", "27/20", "11/8", "7/5", "10/7", "16/11", "40/27", "3/2", "32/21", "14/9", "11/7", "8/5", "18/11", "5/3", "27/16", "12/7", "7/4", "16/9", "9/5", "20/11", "11/6", "15/8", "40/21", "64/33", "160/81"]
       },
       {
-        "name":  "53-RI-3L Bosanquet / Wilson / Terpstra Male (Western)",
+        "name": "53-RI-3L Bosanquet / Wilson / Terpstra Male (Western)",
         "output": "sample",
         "fundamental": 256,
         "rSteps": 9,
@@ -395,7 +396,7 @@ export const presets = [
       },
 
       {
-        "name":  "53-RI-3L Mirrored Bosanquet/Wilson / Terpstra Female (Eastern)",
+        "name": "53-RI-3L Mirrored Bosanquet/Wilson / Terpstra Female (Eastern)",
         "output": "sample",
         "fundamental": 256,
         "rSteps": 9,
@@ -419,7 +420,7 @@ export const presets = [
     "name": "Equal Temperaments",
     settings: [
       {
-        "name":  "19-ed2 Bosanquet / Wilson / Terpstra",
+        "name": "19-ed2 Bosanquet / Wilson / Terpstra",
         "output": "sample",
         "fundamental": 254.5642522,
         "rSteps": 3,
@@ -452,7 +453,7 @@ export const presets = [
         "short_description": "31-ed2 Bosanquet / Wilson / Terpstra",
         "names": ["C", "D♭♭", "C♯", "D♭", "C×", "D", "E♭♭", "D♯", "E♭", "D×", "E", "F♭", "E♯", "F", "G♭♭", "F♯", "G♭", "F×", "G", "A♭♭", "G♯", "A♭", "G×", "A", "B♭♭", "A♯", "B♭", "A×", "B", "C♭", "B♯"],
         "note_colors": ["#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#bbaa93", "#cfcfcf", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#ff9f41", "#cfcfcf", "#bbaa93", "#7b7b7b", "#ffffff", "#bbaa93", "#cfcfcf", "#ffffff"],
-        "name":  "31-ed2 Bosanquet / Wilson / Terpstra"
+        "name": "31-ed2 Bosanquet / Wilson / Terpstra"
       },
 
       {
@@ -471,11 +472,13 @@ export const presets = [
         "short_description": "41-ed2 Bosanquet / Wilson / Terpstra",
         "names": ["0/41", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"],
         "note_colors": ["#ffffff", "#c3b7ab", "#878787", "#ff9f40", "#878787", "#ff9f40", "#abb7c3", "#ffffff", "#c3b7ab", "#878787", "#ff9f40", "#878787", "#ff9f40", "#abb7c3", "#ffffff", "#c3b7ab", "#abb7c3", "#ffffff", "#c3b7ab", "#878787", "#ff9f40", "#878787", "#ff9f40", "#abb7c3", "#ffffff", "#c3b7ab", "#878787", "#ff9f40", "#878787", "#ff9f40", "#abb7c3", "#ffffff", "#c3b7ab", "#878787", "#ff9f40", "#878787", "#ff9f40", "#abb7c3", "#ffffff", "#c3b7ab", "#abb7c3"],
-        "name":  "41-ed2 Bosanquet / Wilson / Terpstra"
+        "name": "41-ed2 Bosanquet / Wilson / Terpstra"
       },
-    ]},
+    ]
+  },
 
-  { "name": "Stretched & Compressed Tunings",
+  {
+    "name": "Stretched & Compressed Tunings",
     settings: [
       {
         "output": "sample",
@@ -492,7 +495,7 @@ export const presets = [
         "scale": parseScale(scale_12_stretched_inharmonic6_harmonic7).scale,
         "names": ["n=log₇6", "(16/15)ⁿ", "(9/8)ⁿ", "(6/5)ⁿ", "(5/4)ⁿ", "(4/3)ⁿ", "(45/32)ⁿ", "(3/2)ⁿ", "(8/5)ⁿ", "(5/3)ⁿ", "(16/9)ⁿ", "(15/8)ⁿ"],
         "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
-        "name":  "12-Stretched inharmonic 6 = harmonic 7 - Jankó / ..."
+        "name": "12-Stretched inharmonic 6 = harmonic 7 - Jankó / ..."
       },
 
       {
@@ -512,10 +515,34 @@ export const presets = [
         "short_description": `12 Compressed inharmonic 7 ": " harmonic 6 - Jankó / 6-6/Balanced/Symmetric/Bilinear/Uniform Keyboard / ~Halberstadt | Terpstra Keyboard WebApp`,
         "names": ["log₇6", "(16/15)", "(9/8)", "(6/5)", "(5/4)", "(4/3)", "(45/32)", "(3/2)", "(8/5)", "(5/3)", "(16/9)", "(15/8)"],
         "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
-        "name":  "12-Compressed inharmonic 7 & harmonic 6 - Jankó / ..."
+        "name": "12-Compressed inharmonic 7 & harmonic 6 - Jankó / ..."
       },
     ]
+
   },
+  {
+    "name": "Hyper-Instrument",
+    settings: [
+      {
+        "output": "sample",
+        "fundamental": 256,
+        "rSteps": 2,
+        "urSteps": 1,
+        "hexSize": 50,
+        "rotation": 343.897886248,
+        "instrument": "WMRI-in6-har7-",
+        "key_labels": "names",
+        "equivSteps": 12,
+        "spectrum_colors": true,
+        "fundamental_color": "#55FF55",
+        "scale": parseScale(scale_david).scale,
+        "names": ["Nota 1", "Nota 2", "Nota 3", "Nota 4", "Nota 5", "Nota 6", "Nota 7", "Nota 8", "Nota 9", "Nota 10", "Nota 11", "Nota 12"],
+        "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
+        "name": "David"
+      }
+    ]
+  },
+
 ];
 
 export default presets;
