@@ -1,5 +1,5 @@
 import { h, render, Fragment } from 'preact';
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect, useRef } from 'preact/hooks';
 import "regenerator-runtime/runtime";
 import Keyboard from './keyboard';
 import { presets, default_settings } from './settings/preset_values';
@@ -93,6 +93,7 @@ export const App = () => {
   const wait = l => l + 1;
   const signal = l => l - 1;
 
+
   useEffect(() => {
     if (navigator.requestMIDIAccess) {
       setLoading(wait);
@@ -160,6 +161,57 @@ export const App = () => {
     ((s.spectrum_colors && s.fundamental_color) || s.note_colors)
   );
 
+
+
+  const myPresets = ["Eb Major", "A Minor", "C Chromatic", "F Major", "C Major", "Gerhard"];
+  const [currentPreset, setCurrentPreset] = useState(0);
+  const [currentBeat, _setCurrentBeat] = useState(1);
+  const BEAT_PER_SCALE = 8;
+
+  const beatRef = useRef(currentBeat);
+
+  const setCurrentBeat = data => {
+    beatRef.current = data;
+    _setCurrentBeat(data);
+  }
+
+  // useEffect(() => {
+
+  //   console.log(`in useEffect`);
+
+
+  //   // if (currentBeat === BEAT_PER_SCALE) {
+  //   //   const presetName = myPresets[currentPreset];
+  //   //   const newPreset = findPreset(myPresets[currentPreset]);
+  //   //   console.log('changing preset to: ');
+  //   //   console.log(newPreset);
+  //   //   setSettings(_ => findPreset(presetName));
+  //   // }
+  // }, [currentBeat, currentPreset, myPresets]);
+
+
+
+
+  const handleScaleChange = () => {
+
+    console.log(`current beat is ${currentBeat}`);
+    console.log(`current beatRef.current is ${beatRef.current}`);
+    let val = beatRef.current + 1;
+
+
+    if (val === BEAT_PER_SCALE) {
+      const presetName = myPresets[currentPreset];
+      const newPreset = findPreset(myPresets[currentPreset]);
+      console.log('changing preset to: ');
+      console.log(newPreset);
+      setSettings(_ => findPreset(presetName));
+      val = 1;
+    }
+
+    setCurrentBeat(val);
+  };
+
+
   return (
     <div className={active ? "hide" : "show"}>
       {loading === 0 && valid(settings) && synth && (
@@ -167,7 +219,7 @@ export const App = () => {
 
           <Keyboard synth={synth} settings={normalize(settings)}
             active={active} />
-          <Player style="position:absolute;z-index:1000;margin-top:200px;" />
+          <Player style="position:absolute;z-index:1000;margin-top:200px;" onScaleChange={handleScaleChange} currentBeat={beatRef.current} />
 
         </Fragment>
       )}
