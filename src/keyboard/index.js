@@ -14,8 +14,8 @@ const Keyboard = (props) => {
   return (
     <Fragment>
       <canvas ref={canvas} tabindex="1" className="keyboard"
-              width="1897" height="936"
-              style="height: 936px; width: 1897px; margin-top: -468px; margin-left: -948.5px;">
+        width="1897" height="936"
+        style="height: 936px; width: 1897px; margin-top: -468px; margin-left: -948.5px;">
       </canvas>
     </Fragment>
   );

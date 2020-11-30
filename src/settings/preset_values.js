@@ -14,6 +14,12 @@ import scale_43_ji_11l_partch from 'scales/43-JI-11L-Partch.scl';
 import scale_12_stretched_inharmonic6_harmonic7 from 'scales/12-Stretched_inharmonic6=harmonic7.scl';
 import scale_wmri_in7_har6 from 'scales/WMRI-in7-har6-.scl';
 import scale_david from 'scales/David.scl';
+import scale_1 from 'scales/Scale1.scl'
+import scale_2 from 'scales/Scale2.scl'
+import scale_3 from 'scales/Scale3.scl'
+import scale_4 from 'scales/Scale4.scl'
+import scale_5 from 'scales/Scale5.scl'
+
 
 import { parseScale } from './scale/parse-scale';
 
@@ -525,6 +531,23 @@ export const presets = [
     settings: [
       {
         "output": "sample",
+        "fundamental": 261.63,
+        "rSteps": 2,
+        "urSteps": 1,
+        "hexSize": 50,
+        "rotation": 343.897886248,
+        "instrument": "WMRI-in6-har7-",
+        "key_labels": "names",
+        "equivSteps": 7,
+        "spectrum_colors": true,
+        "fundamental_color": "#55FF55",
+        "scale": parseScale(scale_1).scale,
+        "names": ["1", "2", "3", "4", "5", "6", "7"],
+        "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
+        "name": "C Major"
+      },
+      {
+        "output": "sample",
         "fundamental": 256,
         "rSteps": 2,
         "urSteps": 1,
@@ -532,14 +555,65 @@ export const presets = [
         "rotation": 343.897886248,
         "instrument": "WMRI-in6-har7-",
         "key_labels": "names",
+        "equivSteps": 7,
+        "spectrum_colors": true,
+        "fundamental_color": "#55FF55",
+        "scale": parseScale(scale_2).scale,
+        "names": ["1", "2", "3", "4", "5", "6", "7"],
+        "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
+        "name": "F Major"
+      },
+      {
+        "output": "sample",
+        "fundamental": 261.6255653,
+        "rSteps": 2,
+        "urSteps": -1,
+        "hexSize": 50,
+        "rotation": 0,
+        "instrument": "rhodes",
+        "key_labels": "names",
         "equivSteps": 12,
         "spectrum_colors": true,
         "fundamental_color": "#55FF55",
-        "scale": parseScale(scale_david).scale,
-        "names": ["Nota 1", "Nota 2", "Nota 3", "Nota 4", "Nota 5", "Nota 6", "Nota 7", "Nota 8", "Nota 9", "Nota 10", "Nota 11", "Nota 12"],
+        "scale": parseScale(scale_3).scale,
+        "names": ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"],
         "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
-        "name": "David"
-      }
+        "name": "C Chromatic"
+      },
+      {
+        "output": "sample",
+        "fundamental": 256,
+        "rSteps": 2,
+        "urSteps": 1,
+        "hexSize": 50,
+        "rotation": 343.897886248,
+        "instrument": "WMRI-in6-har7-",
+        "key_labels": "names",
+        "equivSteps": 7,
+        "spectrum_colors": true,
+        "fundamental_color": "#55FF55",
+        "scale": parseScale(scale_4).scale,
+        "names": ["1", "2", "3", "4", "5", "6", "7"],
+        "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
+        "name": "Eb Major"
+      },
+      {
+        "output": "sample",
+        "fundamental": 256,
+        "rSteps": 2,
+        "urSteps": 1,
+        "hexSize": 50,
+        "rotation": 343.897886248,
+        "instrument": "WMRI-in6-har7-",
+        "key_labels": "names",
+        "equivSteps": 7,
+        "spectrum_colors": true,
+        "fundamental_color": "#55FF55",
+        "scale": parseScale(scale_5).scale,
+        "names": ["1", "2", "3", "4", "5", "6", "7"],
+        "note_colors": ["#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff", "#7b7b7b", "#ffffff"],
+        "name": "A Minor"
+      },
     ]
   },
 
